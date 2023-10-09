@@ -1,7 +1,7 @@
 ---
 name: Issue Template
 about: "'이슈 템플릿 '"
-title: '"[type] 화면 이름 / 작업 내용"'
+title: "[type] 화면 이름 / 작업 내용"
 labels: ''
 assignees: ''
 
