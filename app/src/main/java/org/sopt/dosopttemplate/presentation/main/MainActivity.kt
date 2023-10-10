@@ -21,12 +21,12 @@ import org.sopt.dosopttemplate.util.view.snackBar
 class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main) {
     val viewModel by viewModels<MainViewModel>()
     var backPressedTime = 0L
-    val callback = object : OnBackPressedCallback(true) {
+    val callback = object : OnBackPressedCallback(true) {//뒤로가기 버튼 콜백
         override fun handleOnBackPressed() {
-            if (System.currentTimeMillis() - backPressedTime >= 1500) {
+            if (System.currentTimeMillis() - backPressedTime >= 1500) {//버튼 클릭 딜레이 1500 이상일때
                 backPressedTime = System.currentTimeMillis()
                 binding.root.snackBar { getString(R.string.main_onbackpressed) }
-            } else {
+            } else {//미만일때
                 finish()
             }
         }
@@ -43,7 +43,7 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
     }
 
     private fun initAddCallback() {
-        this.onBackPressedDispatcher.addCallback(this, callback)
+        this.onBackPressedDispatcher.addCallback(this, callback)//콜백 등록
     }
 
     private fun getUserInfo() {
@@ -75,8 +75,6 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
                     }
                     navigateToLoginScreen()
                 }
-
-                is UiState.Failure -> {}
                 else -> {}
             }
         }
