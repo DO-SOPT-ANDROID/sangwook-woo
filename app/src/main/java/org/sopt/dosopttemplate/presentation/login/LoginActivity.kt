@@ -68,17 +68,21 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
         viewModel.loginState.observe(this) { state ->
             when (state) {
                 is UiState.Success -> {
-                    val intent = Intent(this, MainActivity::class.java)
-                    intent.putExtra(USER_KEY, state.data)
-                    this.toast(getString(R.string.login_success_login))
-                    startActivity(intent)
-                    finish()
+                    navigateToMainScreenWithUserData(state.data)
                 }
 
                 is UiState.Empty -> {}
                 else -> binding.root.snackBar { getString(R.string.login_fail_login) }
             }
         }
+    }
+
+    private fun navigateToMainScreenWithUserData(user: User?){
+        val intent = Intent(this, MainActivity::class.java)
+        intent.putExtra(USER_KEY, user)
+        this.toast(getString(R.string.login_success_login))
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        startActivity(intent)
     }
 
     private fun initHideKeyboard() {
