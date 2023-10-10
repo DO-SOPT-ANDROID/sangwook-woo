@@ -4,6 +4,9 @@
 
     <data>
 
+        <variable
+            name="vm"
+            type="org.sopt.dosopttemplate.presentation.login.LoginViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -33,7 +36,9 @@
                 android:id="@+id/et_login_id"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/login_id" />
+                android:hint="@string/login_id"
+                android:inputType="text"
+                android:text="@={vm.id}" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -49,7 +54,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/login_pw"
-                android:inputType="textPassword" />
+                android:inputType="textPassword"
+                android:text="@={vm.pw}" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
