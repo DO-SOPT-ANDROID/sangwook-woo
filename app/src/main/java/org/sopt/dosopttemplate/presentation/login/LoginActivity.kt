@@ -81,6 +81,7 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
         val intent = Intent(this, MainActivity::class.java)
         intent.putExtra(USER_KEY, user)
         this.toast(getString(R.string.login_success_login))
+        viewModel.setAutoLogin(user)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)
     }
