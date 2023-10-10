@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <application
+        android:name=".DoSoptApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -15,11 +16,13 @@
         <activity
             android:name=".presentation.main.MainActivity"
             android:exported="false">
+
         </activity>
 
         <activity
             android:name=".presentation.login.LoginActivity"
-            android:exported="true">
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -27,8 +30,10 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".presentation.signup.SignupActivity"
-            android:exported="false">
+        <activity
+            android:name=".presentation.signup.SignupActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize">
 
         </activity>
     </application>
