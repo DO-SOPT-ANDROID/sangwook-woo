@@ -42,30 +42,32 @@ class SignupActivity : BindingActivity<ActivitySignupBinding>(R.layout.activity_
                 }
 
                 is UiState.Failure -> {
-                    when (state.msg) {
-                        CODE_INVALID_ID -> {
-                            binding.root.snackBar { getString(R.string.signup_fail_id) }
-                        }
-
-                        CODE_INVALID_PW -> {
-                            binding.root.snackBar { getString(R.string.signup_fail_pw) }
-                        }
-
-                        CODE_INVALID_NICKNAME -> {
-                            binding.root.snackBar { getString(R.string.signup_fail_nickname) }
-                        }
-
-                        CODE_INVALID_HOBBY -> {
-                            binding.root.snackBar { getString(R.string.signup_fail_hobby) }
-                        }
-                    }
+                   handleFailureState(state.msg)
                 }
 
                 else -> {}
             }
         }
     }
+    private fun handleFailureState(msg: String) {
+        when (msg) {
+            CODE_INVALID_ID -> {
+                binding.root.snackBar { getString(R.string.signup_fail_id) }
+            }
 
+            CODE_INVALID_PW -> {
+                binding.root.snackBar { getString(R.string.signup_fail_pw) }
+            }
+
+            CODE_INVALID_NICKNAME -> {
+                binding.root.snackBar { getString(R.string.signup_fail_nickname) }
+            }
+
+            CODE_INVALID_HOBBY -> {
+                binding.root.snackBar { getString(R.string.signup_fail_hobby) }
+            }
+        }
+    }
     private fun initHideKeyboard() {
         binding.root.setOnClickListener { hideKeyboard() }
         binding.clSignup.setOnClickListener { hideKeyboard() }
