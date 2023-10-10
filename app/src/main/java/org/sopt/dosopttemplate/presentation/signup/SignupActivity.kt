@@ -42,13 +42,14 @@ class SignupActivity : BindingActivity<ActivitySignupBinding>(R.layout.activity_
                 }
 
                 is UiState.Failure -> {
-                   handleFailureState(state.msg)
+                    handleFailureState(state.msg)
                 }
 
                 else -> {}
             }
         }
     }
+
     private fun handleFailureState(msg: String) {
         when (msg) {
             CODE_INVALID_ID -> {
@@ -68,6 +69,7 @@ class SignupActivity : BindingActivity<ActivitySignupBinding>(R.layout.activity_
             }
         }
     }
+
     private fun initHideKeyboard() {
         binding.root.setOnClickListener { hideKeyboard() }
         binding.clSignup.setOnClickListener { hideKeyboard() }
