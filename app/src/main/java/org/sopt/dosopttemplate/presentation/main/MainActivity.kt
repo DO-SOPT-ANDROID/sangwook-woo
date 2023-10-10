@@ -69,19 +69,23 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
         viewModel.logoutState.observe(this) { state ->
             when (state) {
                 is UiState.Success -> {
-                    val intent = Intent(this, LoginActivity::class.java)
                     when (state.data) {
                         CODE_LOGOUT -> this.toast(getString(R.string.main_success_logout))
                         CODE_WITHDRAW -> this.toast(getString(R.string.main_success_withdraw))
                     }
-                    startActivity(intent)
-                    finish()
+                    navigateToLoginScreen()
                 }
 
                 is UiState.Failure -> {}
                 else -> {}
             }
         }
+    }
+
+    private fun navigateToLoginScreen() {
+        val intent = Intent(this, LoginActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        startActivity(intent)
     }
 
     companion object {
