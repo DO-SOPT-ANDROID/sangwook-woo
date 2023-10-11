@@ -15,6 +15,9 @@ class SignupViewModel : ViewModel() {
     private val _signupState = MutableLiveData<UiState<User>>(UiState.Empty)
     val signupState: LiveData<UiState<User>> get() = _signupState
 
+    private fun isValidSignup(): Boolean =
+        isValidId(id.value) && isValidPw(pw.value) && isValidNickName(nickname.value) && isValidHobby(hobby.value)
+
     private fun isValidId(id: String?): Boolean =
         id?.length in MIN_ID_LENGTH..MAX_ID_LENGTH
 
@@ -28,20 +31,12 @@ class SignupViewModel : ViewModel() {
         hobby?.isNotBlank() ?: false
 
     fun signUp(user: User) {
-        if (isValidId(id.value) &&
-            isValidPw(pw.value) &&
-            isValidNickName(nickname.value) &&
-            isValidHobby(hobby.value)
-        ) {
-            _signupState.value = UiState.Success(user)
-        } else if (!isValidId(id.value)) {
-            _signupState.value = UiState.Failure(CODE_INVALID_ID)
-        } else if (!isValidPw(pw.value)) {
-            _signupState.value = UiState.Failure(CODE_INVALID_PW)
-        } else if (!isValidNickName(nickname.value)) {
-            _signupState.value = UiState.Failure(CODE_INVALID_NICKNAME)
-        } else {
-            _signupState.value = UiState.Failure(CODE_INVALID_HOBBY)
+        when {
+            isValidSignup() -> _signupState.value = UiState.Success(user)
+            !isValidId(id.value) -> _signupState.value = UiState.Failure(CODE_INVALID_ID)
+            !isValidPw(pw.value) -> _signupState.value = UiState.Failure(CODE_INVALID_PW)
+            !isValidNickName(nickname.value) -> _signupState.value = UiState.Failure(CODE_INVALID_NICKNAME)
+            !isValidHobby(hobby.value) -> _signupState.value = UiState.Failure(CODE_INVALID_NICKNAME)
         }
     }
 
