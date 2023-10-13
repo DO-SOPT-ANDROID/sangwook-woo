@@ -1,40 +1,35 @@
 package org.sopt.dosopttemplate.data.repository
 
-import android.content.SharedPreferences
-import com.google.gson.Gson
-import com.google.gson.GsonBuilder
-import org.sopt.dosopttemplate.data.entity.User
+import org.sopt.dosopttemplate.data.model.UserDto
+import org.sopt.dosopttemplate.data.remote.SharedPrefDataSource
+import org.sopt.dosopttemplate.domain.entity.User
 import org.sopt.dosopttemplate.domain.repository.SharedPrefRepository
 import javax.inject.Inject
 
 class SharedPrefRepositoryImpl @Inject constructor(
-    private val sharedPref: SharedPreferences
+    private val sharedPrefDataSource: SharedPrefDataSource
 ) : SharedPrefRepository {
-    val gson: Gson = GsonBuilder().create()
     override fun saveUserInfo(user: User?) {
-        val value = gson.toJson(user)
-        sharedPref.edit().putString("user", value).apply()
+        sharedPrefDataSource.saveUserInfo(UserDto().toUserDto(user))
     }
 
     override fun getUserInfo(): User? {
-        val value = sharedPref.getString("user", "")
-        if (value.isNullOrBlank()) return null
-        return gson.fromJson(value, User::class.java)
+        return sharedPrefDataSource.getUserInfo().toUser()
     }
 
     override fun setAutoLogin() {
-        sharedPref.edit().putBoolean("autoLogin", true).apply()
+        sharedPrefDataSource.setAutoLogin()
     }
 
     override fun isAutoLogin(): Boolean {
-        return sharedPref.getBoolean("autoLogin", false)
+        return sharedPrefDataSource.isAutoLogin()
     }
 
     override fun clearAutoLogin() {
-        sharedPref.edit().putBoolean("autoLogin", false).apply()
+        sharedPrefDataSource.clearAutoLogin()
     }
 
     override fun clearSharedPref() {
-        sharedPref.edit().clear().apply()
+        sharedPrefDataSource.clearSharedPref()
     }
 }

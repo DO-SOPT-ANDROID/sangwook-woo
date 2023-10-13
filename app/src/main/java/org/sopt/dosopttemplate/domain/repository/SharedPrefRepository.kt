@@ -1,6 +1,6 @@
 package org.sopt.dosopttemplate.domain.repository
 
-import org.sopt.dosopttemplate.data.entity.User
+import org.sopt.dosopttemplate.domain.entity.User
 
 interface SharedPrefRepository {
     fun saveUserInfo(user: User?)
