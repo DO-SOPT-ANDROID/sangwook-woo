@@ -3,7 +3,7 @@ package org.sopt.dosopttemplate.presentation.signup
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import org.sopt.dosopttemplate.data.entity.User
+import org.sopt.dosopttemplate.presentation.model.UserModel
 import org.sopt.dosopttemplate.util.view.UiState
 
 class SignupViewModel : ViewModel() {
@@ -12,11 +12,13 @@ class SignupViewModel : ViewModel() {
     val nickname = MutableLiveData<String>()
     val hobby = MutableLiveData<String>()
 
-    private val _signupState = MutableLiveData<UiState<User>>(UiState.Empty)
-    val signupState: LiveData<UiState<User>> get() = _signupState
+    private val _signupState = MutableLiveData<UiState<UserModel>>(UiState.Empty)
+    val signupState: LiveData<UiState<UserModel>> get() = _signupState
 
     private fun isValidSignup(): Boolean =
-        isValidId(id.value) && isValidPw(pw.value) && isValidNickName(nickname.value) && isValidHobby(hobby.value)
+        isValidId(id.value) && isValidPw(pw.value) && isValidNickName(nickname.value) && isValidHobby(
+            hobby.value
+        )
 
     private fun isValidId(id: String?): Boolean =
         id?.length in MIN_ID_LENGTH..MAX_ID_LENGTH
@@ -30,13 +32,16 @@ class SignupViewModel : ViewModel() {
     private fun isValidHobby(hobby: String?): Boolean =
         hobby?.isNotBlank() ?: false
 
-    fun signUp(user: User) {
+    fun signUp(userModel: UserModel) {
         when {
-            isValidSignup() -> _signupState.value = UiState.Success(user)
+            isValidSignup() -> _signupState.value = UiState.Success(userModel)
             !isValidId(id.value) -> _signupState.value = UiState.Failure(CODE_INVALID_ID)
             !isValidPw(pw.value) -> _signupState.value = UiState.Failure(CODE_INVALID_PW)
-            !isValidNickName(nickname.value) -> _signupState.value = UiState.Failure(CODE_INVALID_NICKNAME)
-            !isValidHobby(hobby.value) -> _signupState.value = UiState.Failure(CODE_INVALID_NICKNAME)
+            !isValidNickName(nickname.value) -> _signupState.value =
+                UiState.Failure(CODE_INVALID_NICKNAME)
+
+            !isValidHobby(hobby.value) -> _signupState.value =
+                UiState.Failure(CODE_INVALID_NICKNAME)
         }
     }
 

@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
-import org.sopt.dosopttemplate.data.entity.User
 import org.sopt.dosopttemplate.domain.repository.SharedPrefRepository
+import org.sopt.dosopttemplate.presentation.model.UserModel
 import org.sopt.dosopttemplate.util.view.UiState
 import javax.inject.Inject
 
@@ -13,8 +13,8 @@ import javax.inject.Inject
 class LoginViewModel @Inject constructor(
     val sharedPrefRepository: SharedPrefRepository
 ) : ViewModel() {
-    private val _loginState = MutableLiveData<UiState<User?>>(UiState.Empty)
-    val loginState: LiveData<UiState<User?>> get() = _loginState
+    private val _loginState = MutableLiveData<UiState<UserModel?>>(UiState.Empty)
+    val loginState: LiveData<UiState<UserModel?>> get() = _loginState
 
     val id = MutableLiveData<String>()
     val pw = MutableLiveData<String>()
@@ -23,23 +23,25 @@ class LoginViewModel @Inject constructor(
         autoLogin()
     }
 
-    private fun isValidLogin(user: User? = sharedPrefRepository.getUserInfo()): Boolean =
-        id.value == user?.id && pw.value == user?.pw
+    private fun isValidLogin(userModel: UserModel? = UserModel().toUserModel(sharedPrefRepository.getUserInfo())): Boolean =
+        id.value == userModel?.id && pw.value == userModel?.pw
 
-    fun login(user: User? = null) {
-        when (if (user == null) isValidLogin() else isValidLogin(user)) {
-            true -> _loginState.value = UiState.Success(sharedPrefRepository.getUserInfo())
+    fun login(userModel: UserModel? = null) {
+        when (if (userModel == null) isValidLogin() else isValidLogin(userModel)) {
+            true -> _loginState.value =
+                UiState.Success(UserModel().toUserModel(sharedPrefRepository.getUserInfo()))
+
             false -> _loginState.value = UiState.Failure(CODE_FAILURE)
         }
     }
 
     private fun autoLogin() {
         if (sharedPrefRepository.isAutoLogin()) _loginState.value =
-            UiState.Success(sharedPrefRepository.getUserInfo())
+            UiState.Success(UserModel().toUserModel(sharedPrefRepository.getUserInfo()))
     }
 
-    fun setAutoLogin(user: User?) {
-        sharedPrefRepository.saveUserInfo(user)
+    fun setAutoLogin(userModel: UserModel?) {
+        sharedPrefRepository.saveUserInfo(userModel?.toUser())
         sharedPrefRepository.setAutoLogin()
     }
 

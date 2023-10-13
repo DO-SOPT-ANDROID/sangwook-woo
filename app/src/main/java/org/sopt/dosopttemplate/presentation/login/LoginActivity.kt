@@ -7,9 +7,9 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import org.sopt.dosopttemplate.R
-import org.sopt.dosopttemplate.data.entity.User
 import org.sopt.dosopttemplate.databinding.ActivityLoginBinding
 import org.sopt.dosopttemplate.presentation.main.MainActivity
+import org.sopt.dosopttemplate.presentation.model.UserModel
 import org.sopt.dosopttemplate.presentation.signup.SignupActivity
 import org.sopt.dosopttemplate.util.activity.hideKeyboard
 import org.sopt.dosopttemplate.util.binding.BindingActivity
@@ -37,10 +37,10 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
             ActivityResultContracts.StartActivityForResult()
         ) { result ->
             if (result.resultCode == RESULT_OK) {
-                val user = result.data?.getParcelable(USER_KEY, User::class.java)
-                viewModel.setAutoLogin(user)
+                val userModel = result.data?.getParcelable(USER_KEY, UserModel::class.java)
+                viewModel.setAutoLogin(userModel)
                 binding.root.snackBar { getString(R.string.login_success_signup) }
-                setLoginButtonClickListener(user)
+                setLoginButtonClickListener(userModel)
             }
         }
     }
@@ -58,9 +58,9 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
         }
     }
 
-    private fun setLoginButtonClickListener(user: User?) {
+    private fun setLoginButtonClickListener(userModel: UserModel?) {
         binding.btnLoginLogin.setOnClickListener {
-            viewModel.login(user)
+            viewModel.login(userModel)
         }
     }
 
@@ -77,11 +77,11 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
         }
     }
 
-    private fun navigateToMainScreenWithUserData(user: User?){
+    private fun navigateToMainScreenWithUserData(userModel: UserModel?) {
         val intent = Intent(this, MainActivity::class.java)
-        intent.putExtra(USER_KEY, user)
+        intent.putExtra(USER_KEY, userModel)
         this.toast(getString(R.string.login_success_login))
-        viewModel.setAutoLogin(user)
+        viewModel.setAutoLogin(userModel)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)
     }

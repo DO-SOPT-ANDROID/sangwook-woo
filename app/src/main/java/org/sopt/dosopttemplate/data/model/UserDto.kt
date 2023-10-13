@@ -9,7 +9,7 @@ data class UserDto(
     val pw: String? = "",
     val nickname: String? = "",
     val hobby: String? = ""
-){
+) {
     fun toUser(): User? {
         return User(id, pw, nickname, hobby)
     }

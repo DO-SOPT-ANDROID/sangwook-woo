@@ -6,11 +6,11 @@ import androidx.activity.OnBackPressedCallback
 import androidx.activity.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import org.sopt.dosopttemplate.R
-import org.sopt.dosopttemplate.data.entity.User
 import org.sopt.dosopttemplate.databinding.ActivityMainBinding
 import org.sopt.dosopttemplate.presentation.login.LoginActivity
 import org.sopt.dosopttemplate.presentation.main.MainViewModel.Companion.CODE_LOGOUT
 import org.sopt.dosopttemplate.presentation.main.MainViewModel.Companion.CODE_WITHDRAW
+import org.sopt.dosopttemplate.presentation.model.UserModel
 import org.sopt.dosopttemplate.util.binding.BindingActivity
 import org.sopt.dosopttemplate.util.context.toast
 import org.sopt.dosopttemplate.util.intent.getParcelable
@@ -21,7 +21,8 @@ import org.sopt.dosopttemplate.util.view.snackBar
 class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main) {
     val viewModel by viewModels<MainViewModel>()
     var backPressedTime = 0L
-    val callback = object : OnBackPressedCallback(true) {//뒤로가기 버튼 콜백
+    val callback = object : OnBackPressedCallback(true) {
+        //뒤로가기 버튼 콜백
         override fun handleOnBackPressed() {
             if (System.currentTimeMillis() - backPressedTime >= MIN_TOUCH_DURATION) {//버튼 클릭 딜레이 1500 이상일때
                 backPressedTime = System.currentTimeMillis()
@@ -48,9 +49,9 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
 
     private fun getUserInfo() {
         val intent = intent
-        val user = intent.getParcelable(USER_KEY, User::class.java)
+        val userModel = intent.getParcelable(USER_KEY, UserModel::class.java)
 
-        binding.data = user
+        binding.data = userModel
     }
 
     private fun initLogoutButtonClickListener() {
@@ -75,6 +76,7 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
                     }
                     navigateToLoginScreen()
                 }
+
                 else -> {}
             }
         }
