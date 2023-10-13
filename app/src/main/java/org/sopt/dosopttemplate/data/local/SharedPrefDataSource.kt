@@ -1,4 +1,4 @@
-package org.sopt.dosopttemplate.data.remote
+package org.sopt.dosopttemplate.data.local
 
 import org.sopt.dosopttemplate.data.model.UserDto
 

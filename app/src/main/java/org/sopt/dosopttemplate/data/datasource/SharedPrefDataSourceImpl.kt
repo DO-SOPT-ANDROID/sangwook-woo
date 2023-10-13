@@ -4,7 +4,7 @@ import android.content.SharedPreferences
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import org.sopt.dosopttemplate.data.model.UserDto
-import org.sopt.dosopttemplate.data.remote.SharedPrefDataSource
+import org.sopt.dosopttemplate.data.local.SharedPrefDataSource
 import javax.inject.Inject
 
 class SharedPrefDataSourceImpl @Inject constructor(
