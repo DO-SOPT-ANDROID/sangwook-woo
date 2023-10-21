@@ -1,3 +1,30 @@
 <resources>
     <string name="app_name">DoSoptTemplate</string>
+    <!-- login -->
+    <string name="login_title">Welcome to SOPT</string>
+    <string name="login_id">아이디</string>
+    <string name="login_pw">비밀번호</string>
+    <string name="login_login">로그인</string>
+    <string name="login_signup">회원가입</string>
+    <string name="login_success_signup">회원가입에 성공했습니다.</string>
+    <string name="login_fail_login">존재하지 않는 아이디 입니다.</string>
+    <string name="login_success_login">로그인에 성공했습니다.</string>
+    <!-- main -->
+    <string name="main_id">아이디</string>
+    <string name="main_hobby">취미</string>
+    <!-- signup -->
+    <string name="signup_id">아이디</string>
+    <string name="signup_id_hint">아이디를 입력하세요. (6~10 글자)</string>
+    <string name="signup_pw">비밀번호</string>
+    <string name="signup_pw_hint">비밀번호를 입력하세요. (8~12 글자)</string>
+    <string name="signup_nickname">닉네임</string>
+    <string name="signup_nickname_hint">닉네임을 입력하세요. (한 글자 이상)</string>
+    <string name="signup_hobby">취미</string>
+    <string name="signup_hobby_hint">취미를 입력하세요.</string>
+    <string name="signup_signup">회원가입 하기</string>
+    <string name="signup_title">SIGN UP</string>
+    <string name="signup_fail_id">아이디는 6~10자 입니다.</string>
+    <string name="signup_fail_pw">비밀번호는 8~12자 입니다.</string>
+    <string name="signup_fail_nickname">공백으로만 이루어진 닉네임은 불가합니다.</string>
+    <string name="signup_fail_hobby">취미를 적어주세요.</string>
 </resources>
