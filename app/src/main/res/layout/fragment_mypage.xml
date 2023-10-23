@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="data"
+            type="org.sopt.dosopttemplate.presentation.model.UserModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cv_main_profile"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            app:cardCornerRadius="20dp"
+            app:layout_constraintBottom_toTopOf="@id/tv_main_id_title"
+            app:layout_constraintDimensionRatio="1"
+            app:layout_constraintEnd_toStartOf="@id/tv_main_nickname"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:strokeColor="@color/black"
+            app:strokeWidth="3dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/son" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:id="@+id/tv_main_nickname"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:text="@{data.nickname}"
+            android:textSize="30sp"
+            app:layout_constraintBottom_toBottomOf="@id/cv_main_profile"
+            app:layout_constraintStart_toEndOf="@id/cv_main_profile"
+            app:layout_constraintTop_toTopOf="@id/cv_main_profile"
+            tools:text="소니" />
+
+        <TextView
+            android:id="@+id/tv_main_id_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="@string/main_id"
+            android:textSize="40sp"
+            app:layout_constraintStart_toStartOf="@id/cv_main_profile"
+            app:layout_constraintTop_toBottomOf="@id/cv_main_profile" />
+
+        <TextView
+            android:id="@+id/tv_main_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@{data.id}"
+            android:textSize="30sp"
+            app:layout_constraintStart_toStartOf="@id/tv_main_id_title"
+            app:layout_constraintTop_toBottomOf="@id/tv_main_id_title"
+            tools:text="SONNY" />
+
+        <TextView
+            android:id="@+id/tv_main_hobby_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="@string/main_hobby"
+            android:textSize="40sp"
+            app:layout_constraintStart_toStartOf="@id/tv_main_id"
+            app:layout_constraintTop_toBottomOf="@id/tv_main_id" />
+
+        <TextView
+            android:id="@+id/tv_main_hobby"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@{data.hobby}"
+            android:textSize="30sp"
+            app:layout_constraintStart_toStartOf="@id/tv_main_hobby_title"
+            app:layout_constraintTop_toBottomOf="@id/tv_main_hobby_title"
+            tools:text="축구" />
+
+        <Button
+            android:id="@+id/btn_main_logout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/main_logout"
+            android:textSize="20sp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginBottom="10dp"
+            app:layout_constraintBottom_toTopOf="@id/btn_main_withdraw"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <Button
+            android:id="@+id/btn_main_withdraw"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="회원탈퇴"
+            android:textSize="20sp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginBottom="50dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
