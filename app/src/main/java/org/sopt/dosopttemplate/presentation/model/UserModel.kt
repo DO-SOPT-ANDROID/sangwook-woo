@@ -9,13 +9,13 @@ data class UserModel(
     val id: String? = "",
     val pw: String? = "",
     val nickname: String? = "",
-    val hobby: String? = ""
+    val discription: String? = ""
 ) : Parcelable {
     fun toUserModel(user: User?): UserModel {
-        return UserModel(user?.id, user?.pw, user?.nickname, user?.hobby)
+        return UserModel(user?.id, user?.pw, user?.nickname, user?.discription)
     }
 
     fun toUser(): User {
-        return User(id, pw, nickname, hobby)
+        return User(id, pw, nickname, discription)
     }
 }

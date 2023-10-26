@@ -74,7 +74,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:text="@string/main_hobby"
+            android:text="@string/main_discription"
             android:textSize="40sp"
             app:layout_constraintStart_toStartOf="@id/tv_main_id"
             app:layout_constraintTop_toBottomOf="@id/tv_main_id" />
@@ -84,7 +84,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="@{data.hobby}"
+            android:text="@{data.discription}"
             android:textSize="30sp"
             app:layout_constraintStart_toStartOf="@id/tv_main_hobby_title"
             app:layout_constraintTop_toBottomOf="@id/tv_main_hobby_title"
