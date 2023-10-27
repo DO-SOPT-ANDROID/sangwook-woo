@@ -1,6 +1,6 @@
 package org.sopt.dosopttemplate.data.local
 
-import org.sopt.dosopttemplate.data.model.UserDto
+import org.sopt.dosopttemplate.data.model.local.UserDto
 
 interface SharedPrefDataSource {
     fun saveUserInfo(userDto: UserDto?)
