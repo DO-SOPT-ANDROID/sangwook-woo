@@ -11,6 +11,7 @@ import org.sopt.dosopttemplate.presentation.model.UserModel
 import org.sopt.dosopttemplate.util.binding.BindingFragment
 import org.sopt.dosopttemplate.util.intent.getParcelable
 import org.sopt.dosopttemplate.util.view.UiState
+import org.sopt.dosopttemplate.util.view.snackBar
 
 @AndroidEntryPoint
 class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home) {
@@ -38,6 +39,9 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
                     submitHomeList(state)
                 }
 
+                is UiState.Failure -> {
+                    binding.root.snackBar { state.msg }
+                }
                 else -> {}
             }
         }
