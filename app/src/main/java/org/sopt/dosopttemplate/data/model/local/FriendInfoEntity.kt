@@ -16,4 +16,25 @@ data class FriendInfoEntity(
     @ColumnInfo(name = "image_uri")
     val imageUri: String?,
 ) {
+    companion object {
+        fun toFriend(friendInfoList: List<FriendInfoEntity>) = friendInfoList.map { data ->
+            Friend(
+                id = data.id,
+                name = data.name,
+                birthday = LocalDate.parse(data.birthday),
+                music = data.music,
+                imageUri = data.imageUri
+            )
+        }
+
+        fun toFriendInfoEntity(friendList: List<Friend>) = friendList.map { data ->
+            FriendInfoEntity(
+                id = data.id,
+                name = data.name,
+                birthday = data.birthday.toString(),
+                music = data.music,
+                imageUri = data.imageUri
+            )
+        }
+    }
 }
