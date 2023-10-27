@@ -76,14 +76,14 @@ class HomeAdapter : ListAdapter<HomeModel, HomeViewHolder>(DiffUtil) {
         }
     }
 
-    private fun isBirthday(birthday: LocalDate) =
-        (birthday.monthValue == LocalDate.now().monthValue && birthday.dayOfMonth == LocalDate.now().dayOfMonth)
+    private fun isBirthday(birthday: LocalDate?) =
+        (birthday?.monthValue == LocalDate.now().monthValue && birthday.dayOfMonth == LocalDate.now().dayOfMonth)
 
 
     companion object {
         private val DiffUtil = ItemDiffCallback<HomeModel>(
-            onItemsTheSame = { old, new -> old == new },
-            onContentsTheSame = { old, new -> old == new }
+            onItemsTheSame = { old, new -> old.id == new.id },
+            onContentsTheSame = { old, new -> old.id == new.id }
         )
         private const val UNKNOWN_TYPE_EXCEPTION = "UNKNOWN_TYPE"
     }
