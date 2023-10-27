@@ -24,12 +24,11 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
     val viewModel by viewModels<MainViewModel>()
     var backPressedTime = 0L
     val callback = object : OnBackPressedCallback(true) {
-        //뒤로가기 버튼 콜백
         override fun handleOnBackPressed() {
-            if (System.currentTimeMillis() - backPressedTime >= MIN_TOUCH_DURATION) {//버튼 클릭 딜레이 1500 이상일때
+            if (System.currentTimeMillis() - backPressedTime >= MIN_TOUCH_DURATION) {
                 backPressedTime = System.currentTimeMillis()
                 binding.root.snackBar { getString(R.string.main_onbackpressed) }
-            } else {//미만일때
+            } else {
                 finish()
             }
         }
@@ -45,7 +44,7 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
     }
 
     private fun initAddCallback() {
-        this.onBackPressedDispatcher.addCallback(this, callback)//콜백 등록
+        this.onBackPressedDispatcher.addCallback(this, callback)
     }
 
     private fun initFragment() {
