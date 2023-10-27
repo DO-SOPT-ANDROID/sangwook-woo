@@ -7,7 +7,7 @@ import org.sopt.dosopttemplate.databinding.ItemHomeHeaderBinding
 import org.sopt.dosopttemplate.databinding.ItemHomePostBinding
 import org.sopt.dosopttemplate.presentation.model.HomeModel
 
-sealed class HomeViewHolder(view: View) : RecyclerView.ViewHolder(view){
+sealed class HomeViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     class MyInfoViewHolder(
         private val binding: ItemHomeHeaderBinding
     ) : HomeViewHolder(binding.root) {
