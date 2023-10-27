@@ -83,7 +83,7 @@ class HomeAdapter : ListAdapter<HomeModel, HomeViewHolder>(DiffUtil) {
     companion object {
         private val DiffUtil = ItemDiffCallback<HomeModel>(
             onItemsTheSame = { old, new -> old.id == new.id },
-            onContentsTheSame = { old, new -> old.id == new.id }
+            onContentsTheSame = { old, new -> old == new }
         )
         private const val UNKNOWN_TYPE_EXCEPTION = "UNKNOWN_TYPE"
     }
