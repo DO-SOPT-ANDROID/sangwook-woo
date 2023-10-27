@@ -16,13 +16,23 @@ class MainViewModel @Inject constructor(
     val logoutState: LiveData<UiState<String?>> get() = _logoutState
 
     fun logout() {
-        sharedPrefRepository.clearAutoLogin()
-        _logoutState.value = UiState.Success(CODE_LOGOUT)
+        runCatching {
+            sharedPrefRepository.clearAutoLogin()
+        }.onSuccess {
+            _logoutState.value = UiState.Success(CODE_LOGOUT)
+        }.onFailure { t ->
+            _logoutState.value = UiState.Failure("${t.message}")
+        }
     }
 
     fun withdraw() {
-        sharedPrefRepository.clearSharedPref()
-        _logoutState.value = UiState.Success(CODE_WITHDRAW)
+        runCatching {
+            sharedPrefRepository.clearSharedPref()
+        }.onSuccess {
+            _logoutState.value = UiState.Success(CODE_WITHDRAW)
+        }.onFailure { t ->
+            _logoutState.value = UiState.Failure("${t.message}")
+        }
     }
 
     companion object {
