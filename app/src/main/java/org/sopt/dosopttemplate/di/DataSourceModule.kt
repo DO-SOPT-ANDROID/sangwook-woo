@@ -4,7 +4,9 @@ import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import org.sopt.dosopttemplate.data.datasource.FriendLocalDataSourceImpl
 import org.sopt.dosopttemplate.data.datasource.SharedPrefDataSourceImpl
+import org.sopt.dosopttemplate.data.local.FriendLocalDataSource
 import org.sopt.dosopttemplate.data.local.SharedPrefDataSource
 import javax.inject.Singleton
 
@@ -14,4 +16,8 @@ abstract class DataSourceModule {
     @Singleton
     @Binds
     abstract fun bindsSharedPrefDataSource(sharedPrefDataSource: SharedPrefDataSourceImpl): SharedPrefDataSource
+
+    @Singleton
+    @Binds
+    abstract fun bindsFriendLocalDataSource(friendLocalDataSource: FriendLocalDataSourceImpl): FriendLocalDataSource
 }
