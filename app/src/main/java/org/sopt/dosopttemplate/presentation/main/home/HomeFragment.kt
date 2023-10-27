@@ -28,8 +28,12 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
     }
 
     private fun initHomeAdapter() {
-        homeAdapter = HomeAdapter()
-        binding.rvHome.adapter = homeAdapter
+        runCatching { homeAdapter = HomeAdapter()
+            binding.rvHome.adapter = homeAdapter }.onFailure { t->
+            if(t is IllegalArgumentException){
+                t.printStackTrace()
+            }
+        }
     }
 
     private fun initFriendListStateObserver() {

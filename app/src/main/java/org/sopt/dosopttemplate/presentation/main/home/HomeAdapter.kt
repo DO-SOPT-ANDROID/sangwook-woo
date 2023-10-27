@@ -47,7 +47,7 @@ class HomeAdapter : ListAdapter<HomeModel, HomeViewHolder>(DiffUtil) {
                 )
             }
 
-            else -> throw Exception(UNKNOWN_TYPE_EXCEPTION)
+            else -> throw IllegalArgumentException(UNKNOWN_TYPE_EXCEPTION)
         }
     }
 
