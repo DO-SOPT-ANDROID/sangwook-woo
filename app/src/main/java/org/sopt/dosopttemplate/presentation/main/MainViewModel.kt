@@ -10,7 +10,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    val sharedPrefRepository: SharedPrefRepository
+    private val sharedPrefRepository: SharedPrefRepository
 ) : ViewModel() {
     private val _logoutState = MutableLiveData<UiState<String?>>(UiState.Empty)
     val logoutState: LiveData<UiState<String?>> get() = _logoutState

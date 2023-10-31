@@ -11,7 +11,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
-    val sharedPrefRepository: SharedPrefRepository
+    private val sharedPrefRepository: SharedPrefRepository
 ) : ViewModel() {
     private val _loginState = MutableLiveData<UiState<UserModel?>>(UiState.Empty)
     val loginState: LiveData<UiState<UserModel?>> get() = _loginState
