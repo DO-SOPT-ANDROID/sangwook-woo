@@ -13,7 +13,10 @@ import org.sopt.dosopttemplate.presentation.model.HomeModel.MyInfoModel.Companio
 import org.sopt.dosopttemplate.util.view.ItemDiffCallback
 import java.time.LocalDate
 
-class HomeAdapter : ListAdapter<HomeModel, HomeViewHolder>(DiffUtil) {
+class HomeAdapter(
+    private val onLongClicked: (HomeModel.FriendInfoModel) -> Unit,
+    private val onClicked: (HomeModel.FriendInfoModel) -> Unit
+) : ListAdapter<HomeModel, HomeViewHolder>(DiffUtil) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {
         return when (viewType) {
@@ -33,7 +36,9 @@ class HomeAdapter : ListAdapter<HomeModel, HomeViewHolder>(DiffUtil) {
                         LayoutInflater.from(parent.context),
                         parent,
                         false
-                    )
+                    ),
+                    onLongClicked,
+                    onClicked
                 )
             }
 
@@ -43,7 +48,9 @@ class HomeAdapter : ListAdapter<HomeModel, HomeViewHolder>(DiffUtil) {
                         LayoutInflater.from(parent.context),
                         parent,
                         false
-                    )
+                    ),
+                    onLongClicked,
+                    onClicked
                 )
             }
 
