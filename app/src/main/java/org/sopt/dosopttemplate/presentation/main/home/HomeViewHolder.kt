@@ -17,18 +17,36 @@ sealed class HomeViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     }
 
     class FriendViewHolder(
-        private val binding: ItemHomePostBinding
+        private val binding: ItemHomePostBinding,
+        private val onLongClicked: (HomeModel.FriendInfoModel) -> Unit,
+        private val onClicked: (HomeModel.FriendInfoModel) -> Unit
     ) : HomeViewHolder(binding.root) {
         fun onBind(data: HomeModel.FriendInfoModel) {
             binding.data = data
+            binding.root.setOnLongClickListener {
+                onLongClicked(data)
+                return@setOnLongClickListener true
+            }
+            binding.root.setOnClickListener {
+                onClicked(data)
+            }
         }
     }
 
     class BirthdayViewHolder(
-        private val binding: ItemHomeBirthdayBinding
+        private val binding: ItemHomeBirthdayBinding,
+        private val onLongClicked: (HomeModel.FriendInfoModel) -> Unit,
+        private val onClicked: (HomeModel.FriendInfoModel) -> Unit
     ) : HomeViewHolder(binding.root) {
         fun onBind(data: HomeModel.FriendInfoModel) {
             binding.data = data
+            binding.root.setOnLongClickListener {
+                onLongClicked(data)
+                return@setOnLongClickListener true
+            }
+            binding.root.setOnClickListener {
+                onClicked(data)
+            }
         }
     }
 }
