@@ -65,7 +65,7 @@ class SignupActivity : BindingActivity<ActivitySignupBinding>(R.layout.activity_
             }
 
             CODE_INVALID_HOBBY -> {
-                binding.root.snackBar { getString(R.string.signup_fail_hobby) }
+                binding.root.snackBar { getString(R.string.signup_fail_discription) }
             }
         }
     }

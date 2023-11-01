@@ -11,10 +11,11 @@
     <string name="login_success_login">로그인에 성공했습니다.</string>
     <!-- main -->
     <string name="main_id">아이디</string>
-    <string name="main_hobby">취미</string>
+    <string name="main_discription">소개</string>
     <string name="main_success_logout">로그아웃에 성공했습니다.</string>
     <string name="main_success_withdraw">회원탈퇴에 성공했습니다.</string>
     <string name="main_onbackpressed">뒤로가기 버튼을 한번 더 누르면 종료됩니다.</string>
+    <string name="main_logout">로그아웃</string>
     <!-- signup -->
     <string name="signup_id">아이디</string>
     <string name="signup_id_hint">아이디를 입력하세요. (6~10 글자)</string>
@@ -22,13 +23,15 @@
     <string name="signup_pw_hint">비밀번호를 입력하세요. (8~12 글자)</string>
     <string name="signup_nickname">닉네임</string>
     <string name="signup_nickname_hint">닉네임을 입력하세요. (한 글자 이상)</string>
-    <string name="signup_hobby">취미</string>
-    <string name="signup_hobby_hint">취미를 입력하세요.</string>
+    <string name="signup_discription">소개</string>
+    <string name="signup_discription_hint">소개를 입력하세요.</string>
     <string name="signup_signup">회원가입 하기</string>
     <string name="signup_title">SIGN UP</string>
     <string name="signup_fail_id">아이디는 6~10자 입니다.</string>
     <string name="signup_fail_pw">비밀번호는 8~12자 입니다.</string>
     <string name="signup_fail_nickname">공백으로만 이루어진 닉네임은 불가합니다.</string>
-    <string name="signup_fail_hobby">취미를 적어주세요.</string>
-    <string name="main_logout">로그아웃</string>
+    <string name="signup_fail_discription">소개를 적어주세요.</string>
+    <!-- home -->
+    <string name="home_birthday">오늘 생일입니다.</string>
+    <string name="home_gift">선물하기</string>
 </resources>
