@@ -30,6 +30,7 @@ sealed class HomeViewHolder(view: View) : RecyclerView.ViewHolder(view) {
             binding.root.setOnClickListener {
                 onClicked(data)
             }
+            binding.executePendingBindings()
         }
     }
 
@@ -47,6 +48,7 @@ sealed class HomeViewHolder(view: View) : RecyclerView.ViewHolder(view) {
             binding.root.setOnClickListener {
                 onClicked(data)
             }
+            binding.executePendingBindings()
         }
     }
 }
