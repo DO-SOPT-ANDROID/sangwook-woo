@@ -22,8 +22,8 @@ import org.sopt.dosopttemplate.util.view.snackBar
 @AndroidEntryPoint
 class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main) {
     private val viewModel by viewModels<MainViewModel>()
-    var backPressedTime = 0L
-    val callback = object : OnBackPressedCallback(true) {
+    private var backPressedTime = 0L
+    private val callback = object : OnBackPressedCallback(true) {
         override fun handleOnBackPressed() {
             if (System.currentTimeMillis() - backPressedTime >= MIN_TOUCH_DURATION) {
                 backPressedTime = System.currentTimeMillis()
