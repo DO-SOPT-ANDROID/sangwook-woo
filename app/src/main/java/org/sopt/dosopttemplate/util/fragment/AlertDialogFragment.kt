@@ -6,19 +6,22 @@ import org.sopt.dosopttemplate.R
 import org.sopt.dosopttemplate.databinding.FragmentAlertDialogBinding
 import org.sopt.dosopttemplate.util.binding.BindingDialogFragment
 
-class AlertDialogFragment(
-    private val title: String,
-    private val negativeButtonLabel: String,
-    private val positiveButtonLabel: String,
-    val handleNegativeButton: () -> Unit,
-    val handlePositiveButton: () -> Unit
-) : BindingDialogFragment<FragmentAlertDialogBinding>(R.layout.fragment_alert_dialog) {
-
+class AlertDialogFragment : BindingDialogFragment<FragmentAlertDialogBinding>(R.layout.fragment_alert_dialog) {
+    private var handleNegativeButton: (() -> Unit)? = null
+    private var handlePositiveButton: (() -> Unit)? = null
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         dialog?.setCanceledOnTouchOutside(false)
-        initDialogText(title, positiveButtonLabel, negativeButtonLabel)
+
+        val title = arguments?.getString(ARG_TITLE)
+        val negativeButtonLabel = arguments?.getString(ARG_NEGATIVE_BUTTON_LABEL)
+        val positiveButtonLabel = arguments?.getString(ARG_POSITIVE_BUTTON_LABEL)
+
+        if (title != null && negativeButtonLabel != null && positiveButtonLabel != null) {
+            initDialogText(title, positiveButtonLabel, negativeButtonLabel)
+        }
+
         initNegativeButtonClickListener(handleNegativeButton)
         initPositiveButtonClickListener(handlePositiveButton)
     }
@@ -33,17 +36,44 @@ class AlertDialogFragment(
         binding.tvAlertFragmentNegative.text = negativeButtonLabel
     }
 
-    private fun initNegativeButtonClickListener(handleNegativeButton: () -> Unit) {
+    private fun initNegativeButtonClickListener(handleNegativeButton: (() -> Unit)?) {
         binding.tvAlertFragmentNegative.setOnClickListener {
-            handleNegativeButton.invoke()
+            handleNegativeButton?.invoke()
             dismiss()
         }
     }
 
-    private fun initPositiveButtonClickListener(handlePositiveButton: () -> Unit) {
+    private fun initPositiveButtonClickListener(handlePositiveButton: (() -> Unit)?) {
         binding.tvAlertFragmentPositive.setOnClickListener {
-            handlePositiveButton.invoke()
+            handlePositiveButton?.invoke()
             dismiss()
+        }
+    }
+
+    companion object {
+        private const val ARG_TITLE = "title"
+        private const val ARG_NEGATIVE_BUTTON_LABEL = "negativeButtonLabel"
+        private const val ARG_POSITIVE_BUTTON_LABEL = "positiveButtonLabel"
+
+        fun newInstance(
+            title: String,
+            negativeButtonLabel: String,
+            positiveButtonLabel: String,
+            handleNegativeButton: () -> Unit,
+            handlePositiveButton: () -> Unit
+        ): AlertDialogFragment {
+            val args = Bundle()
+            args.putString(ARG_TITLE, title)
+            args.putString(ARG_NEGATIVE_BUTTON_LABEL, negativeButtonLabel)
+            args.putString(ARG_POSITIVE_BUTTON_LABEL, positiveButtonLabel)
+
+            val fragment = AlertDialogFragment()
+            fragment.arguments = args
+
+            fragment.handleNegativeButton = handleNegativeButton
+            fragment.handlePositiveButton = handlePositiveButton
+
+            return fragment
         }
     }
 }

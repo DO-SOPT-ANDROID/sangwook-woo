@@ -192,7 +192,7 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
     }
 
     private fun showFriendDeleteAlertDialogFragment(id: Int?) {
-        val dialog = AlertDialogFragment(
+        val dialog = AlertDialogFragment.newInstance(
             getString(R.string.home_alert_title),
             getString(R.string.home_alert_negative_label),
             getString(R.string.home_alert_positive_label),
@@ -200,8 +200,7 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
             },
             handlePositiveButton = {
                 viewModel.deleteUser(id)
-            }
-        )
+            })
         dialog.show(parentFragmentManager, FRIEND_DELETE_TAG)
     }
 
