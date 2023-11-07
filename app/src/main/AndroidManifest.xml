@@ -14,9 +14,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DoSoptTemplate"
+        android:configChanges="orientation|screenSize|keyboardHidden"
         tools:targetApi="31">
         <activity
             android:name=".presentation.main.MainActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false">
 
         </activity>
@@ -36,6 +38,19 @@
             android:name=".presentation.signup.SignupActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize">
+
+        </activity>
+
+        <activity
+            android:name=".presentation.main.home.addfriend.AddFriendActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize">
+
+        </activity>
+
+        <activity
+            android:name=".presentation.main.home.frienddetail.FriendDetailActivity"
+            android:exported="false">
 
         </activity>
     </application>

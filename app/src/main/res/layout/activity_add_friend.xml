@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="data"
+            type="org.sopt.dosopttemplate.presentation.main.home.addfriend.AddFriendViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tv_add_friend_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/add_friend_title"
+            android:textSize="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_add_friend_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/add_friend_name"
+            android:textSize="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_add_friend_title" />
+
+        <EditText
+            android:id="@+id/et_add_friend_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:hint="@string/add_friend_name_hint"
+            android:text="@={data.name}"
+            app:layout_constraintBottom_toBottomOf="@id/tv_add_friend_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tv_add_friend_name"
+            app:layout_constraintTop_toTopOf="@id/tv_add_friend_name" />
+
+        <TextView
+            android:id="@+id/tv_add_friend_music"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="50dp"
+            android:text="@string/add_friend_music"
+            android:textSize="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_add_friend_name" />
+
+        <EditText
+            android:id="@+id/et_add_friend_music"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:hint="@string/add_friend_music_hint"
+            android:text="@={data.music}"
+            app:layout_constraintBottom_toBottomOf="@id/tv_add_friend_music"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tv_add_friend_music"
+            app:layout_constraintTop_toTopOf="@id/tv_add_friend_music" />
+
+        <TextView
+            android:id="@+id/tv_add_friend_birthday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="50dp"
+            android:text="@string/add_friend_birthday"
+            android:textSize="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_add_friend_music" />
+
+        <TextView
+            android:id="@+id/tv_add_friend_birthday_input"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edge"
+            android:text="@={data.birthday}"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="7dp"
+            android:textSize="20dp"
+            app:layout_constraintBottom_toBottomOf="@id/tv_add_friend_birthday"
+            app:layout_constraintEnd_toStartOf="@id/iv_add_friend_birthday"
+            app:layout_constraintStart_toEndOf="@id/tv_add_friend_birthday"
+            app:layout_constraintTop_toTopOf="@id/tv_add_friend_birthday" />
+
+        <ImageView
+            android:id="@+id/iv_add_friend_birthday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:src="@drawable/baseline_calendar_month_24"
+            app:layout_constraintBottom_toBottomOf="@id/tv_add_friend_birthday"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_add_friend_birthday" />
+
+        <Button
+            android:id="@+id/btn_add_friend"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginBottom="40dp"
+            android:backgroundTint="@android:color/holo_blue_bright"
+            android:text="@string/add_friend_btn_label"
+            android:textSize="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

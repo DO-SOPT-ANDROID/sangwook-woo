@@ -20,6 +20,9 @@ class HomeViewModel @Inject constructor(
         MutableLiveData<UiState<List<HomeModel.FriendInfoModel>>>(UiState.Empty)
     val friendListState: LiveData<UiState<List<HomeModel.FriendInfoModel>>> get() = _friendListState
 
+    private val _friendDeleteState = MutableLiveData<UiState<Any>>(UiState.Empty)
+    val friendDeleteState: LiveData<UiState<Any>> get() = _friendDeleteState
+
     fun getFriendList() {
         viewModelScope.launch {
             friendLocalRepository.getAll()
@@ -30,5 +33,20 @@ class HomeViewModel @Inject constructor(
                     _friendListState.value = UiState.Failure("${t.message}")
                 }
         }
+    }
+
+    fun deleteUser(id: Int?) {
+        viewModelScope.launch {
+            if (id != null) {
+                friendLocalRepository.deleteFriendById(id)
+                _friendDeleteState.value = UiState.Success(true)
+            } else {
+                _friendDeleteState.value = UiState.Failure(ID_NULL_ERROR)
+            }
+        }
+    }
+
+    companion object {
+        private const val ID_NULL_ERROR = "id is null"
     }
 }

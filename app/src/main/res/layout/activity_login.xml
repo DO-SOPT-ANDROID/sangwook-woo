@@ -30,6 +30,8 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="40dp"
+            app:hintTextColor="@android:color/holo_blue_bright"
+            app:boxStrokeColor="@android:color/holo_blue_bright"
             app:layout_constraintTop_toBottomOf="@id/tv_login_title">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -47,6 +49,8 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="10dp"
+            app:hintTextColor="@android:color/holo_blue_bright"
+            app:boxStrokeColor="@android:color/holo_blue_bright"
             app:layout_constraintTop_toBottomOf="@id/til_login_id">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -65,6 +69,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
             android:layout_marginBottom="10dp"
+            android:backgroundTint="@android:color/holo_blue_bright"
             android:text="@string/login_login"
             app:layout_constraintBottom_toTopOf="@id/btn_login_signup"
             app:layout_constraintEnd_toEndOf="parent"
@@ -76,6 +81,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
             android:layout_marginBottom="30dp"
+            android:backgroundTint="@android:color/holo_blue_bright"
             android:text="@string/login_signup"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

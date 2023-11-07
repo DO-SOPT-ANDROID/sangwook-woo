@@ -1,5 +1,7 @@
 package org.sopt.dosopttemplate.presentation.model
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 import org.sopt.dosopttemplate.domain.entity.Friend
 import java.time.LocalDate
 
@@ -16,13 +18,14 @@ sealed class HomeModel {
         }
     }
 
+    @Parcelize
     data class FriendInfoModel(
         override val id: Int?,
         val name: String,
         val birthday: LocalDate?,
         val music: String?,
         val imageUri: String?,
-    ) : HomeModel() {
+    ) : HomeModel(), Parcelable {
         companion object {
             const val NORMAL_FRIEND_VIEW_TYPE = 1
             const val BIRTHDAY_FRIEND_VIEW_TYPE = 2

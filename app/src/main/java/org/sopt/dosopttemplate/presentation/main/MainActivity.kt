@@ -21,9 +21,9 @@ import org.sopt.dosopttemplate.util.view.snackBar
 
 @AndroidEntryPoint
 class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main) {
-    val viewModel by viewModels<MainViewModel>()
-    var backPressedTime = 0L
-    val callback = object : OnBackPressedCallback(true) {
+    private val viewModel by viewModels<MainViewModel>()
+    private var backPressedTime = 0L
+    private val callback = object : OnBackPressedCallback(true) {
         override fun handleOnBackPressed() {
             if (System.currentTimeMillis() - backPressedTime >= MIN_TOUCH_DURATION) {
                 backPressedTime = System.currentTimeMillis()
@@ -67,19 +67,29 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
             }
         }
     }
+
     private fun navigateToLoginScreen() {
         val intent = Intent(this, LoginActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)
     }
+
     private fun initBnvItemSelectedListener() {
         binding.bnvMain.setOnItemSelectedListener { item ->
-            when(item.itemId) {
+            when (item.itemId) {
                 R.id.menu_do_android -> navigateTo<DoAndroidFragment>()
                 R.id.menu_home -> navigateTo<HomeFragment>()
                 R.id.menu_my_page -> navigateTo<MyPageFragment>()
             }
             true
+        }
+
+        binding.bnvMain.setOnItemReselectedListener {
+            supportFragmentManager.findFragmentById(R.id.fcv_main)?.let { currentFragment ->
+                if (currentFragment is HomeFragment) {
+                    currentFragment.scrollTop()
+                }
+            }
         }
     }
 
