@@ -1,6 +1,5 @@
 package org.sopt.dosopttemplate.presentation.main.home.addfriend
 
-import android.app.DatePickerDialog
 import android.os.Bundle
 import androidx.activity.viewModels
 import com.google.android.material.datepicker.MaterialDatePicker
@@ -12,7 +11,6 @@ import org.sopt.dosopttemplate.util.binding.BindingActivity
 import org.sopt.dosopttemplate.util.view.UiState
 import org.sopt.dosopttemplate.util.view.snackBar
 import java.text.SimpleDateFormat
-import java.time.LocalDate
 import java.util.Date
 
 @AndroidEntryPoint
@@ -22,7 +20,7 @@ class AddFriendActivity : BindingActivity<ActivityAddFriendBinding>(R.layout.act
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding.data = viewModel
-        initCalenderBtnClikcListener()
+        initCalenderBtnClickListener()
         initFriendAddBtnClickListener()
         initAddFriendStateObserver()
         initHideKeyboard()
@@ -60,7 +58,7 @@ class AddFriendActivity : BindingActivity<ActivityAddFriendBinding>(R.layout.act
         }
     }
 
-    private fun initCalenderBtnClikcListener() {
+    private fun initCalenderBtnClickListener() {
         binding.ivAddFriendBirthday.setOnClickListener {
             showDatePicker()
         }
