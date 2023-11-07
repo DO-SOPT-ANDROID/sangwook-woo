@@ -3,6 +3,7 @@ package org.sopt.dosopttemplate.presentation.main.home.addfriend
 import android.app.DatePickerDialog
 import android.os.Bundle
 import androidx.activity.viewModels
+import com.google.android.material.datepicker.MaterialDatePicker
 import dagger.hilt.android.AndroidEntryPoint
 import org.sopt.dosopttemplate.R
 import org.sopt.dosopttemplate.databinding.ActivityAddFriendBinding
@@ -10,7 +11,9 @@ import org.sopt.dosopttemplate.util.activity.hideKeyboard
 import org.sopt.dosopttemplate.util.binding.BindingActivity
 import org.sopt.dosopttemplate.util.view.UiState
 import org.sopt.dosopttemplate.util.view.snackBar
+import java.text.SimpleDateFormat
 import java.time.LocalDate
+import java.util.Date
 
 @AndroidEntryPoint
 class AddFriendActivity : BindingActivity<ActivityAddFriendBinding>(R.layout.activity_add_friend) {
@@ -64,20 +67,16 @@ class AddFriendActivity : BindingActivity<ActivityAddFriendBinding>(R.layout.act
     }
 
     private fun showDatePicker() {
-        val now = LocalDate.now()
+        val datePicker = MaterialDatePicker.Builder.datePicker().setTitleText("Select Date").build()
 
-        val datePickerDialog = DatePickerDialog(
-            this,
-            DatePickerDialog.OnDateSetListener { view, selectedYear, selectedMonth, selectedDay ->
-                val selectedDate = LocalDate.of(selectedYear, selectedMonth + 1, selectedDay)
-                binding.tvAddFriendBirthdayInput.text = "$selectedDate"
-            },
-            now.year,
-            now.monthValue - 1,
-            now.dayOfMonth
-        )
+        datePicker.addOnPositiveButtonClickListener {
+            val date = Date()
+            date.time = it
+            val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd")
+            binding.tvAddFriendBirthdayInput.text = simpleDateFormat.format(date).toString()
+        }
 
-        datePickerDialog.show()
+        datePicker.show(supportFragmentManager, datePicker.tag)
     }
 
     private fun initHideKeyboard() {
