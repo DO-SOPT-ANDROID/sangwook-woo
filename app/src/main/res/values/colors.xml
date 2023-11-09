@@ -2,4 +2,78 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <!-- blue scale -->
+    <color name="blue010">#FFF0FAFF</color>
+    <color name="blue020">#FFB2E5FF</color>
+    <color name="blue030">#FF7DD5FF</color>
+    <color name="blue040">#FF44C4FF</color>
+    <color name="blue050">#FF00B8FF</color>
+    <color name="blue060">#FF00AAFE</color>
+    <color name="blue070">#FF009BEF</color>
+    <color name="blue080">#FF0088DA</color>
+    <!-- coral scale -->
+    <color name="coral010">#FFFFEEF1</color>
+    <color name="coral020">#FFFFD5D9</color>
+    <color name="coral030">#FFF8A8A5</color>
+    <color name="coral040">#FFF28882</color>
+    <color name="coral050">#FFFF6F61</color>
+    <color name="coral060">#FFFF6247</color>
+    <color name="coral070">#FFF75B48</color>
+    <color name="coral080">#FFE45141</color>
+    <!-- navy scale -->
+    <color name="navy050">#FF0069FF</color>
+    <color name="navy060">#FF1B56EC</color>
+    <!-- red scale -->
+    <color name="red050">#FFFF2C51</color>
+    <!-- yellow scale -->
+    <color name="yellow050">#FFFFF028</color>
+    <color name="yellow060">#FFFFD324</color>
+    <!-- gray scale -->
+    <color name="gray005">#FFFEFEFE</color>
+    <color name="gray010">#FFFDFDFD</color>
+    <color name="gray020">#FFF7F8F9</color>
+    <color name="gray030">#FFE9EBEE</color>
+    <color name="gray040">#FFC5C8CE</color>
+    <color name="gray050">#FF646F7C</color>
+    <color name="gray060">#FF374553</color>
+    <color name="gray070">#FF28323C</color>
+    <color name="gray080">#FF161D24</color>
+
+    <!-- dark mode -->
+    <!-- blue scale -->
+    <color name="dark_blue010">#FF0656A6</color>
+    <color name="dark_blue020">#FF0088DC</color>
+    <color name="dark_blue030">#FF00A9FF</color>
+    <color name="dark_blue040">#FF00B7FF</color>
+    <color name="dark_blue050">#FF00C3FF</color>
+    <color name="dark_blue060">#FF6FD4FF</color>
+    <color name="dark_blue070">#FFACE5FF</color>
+    <color name="dark_blue080">#FFDEF5FF</color>
+    <!-- coral scale -->
+    <color name="dark_coral010">#FFD73F2F</color>
+    <color name="dark_coral020">#FFE44636</color>
+    <color name="dark_coral030">#FFF7503C</color>
+    <color name="dark_coral040">#FFFF583B</color>
+    <color name="dark_coral050">#FFFF6557</color>
+    <color name="dark_coral060">#FFF3817B</color>
+    <color name="dark_coral070">#FFF9A4A0</color>
+    <color name="dark_coral080">#FFFFD3D6</color>
+    <!-- navy scale -->
+    <color name="dark_navy050">#FF007EFF</color>
+    <color name="dark_navy060">#FF008DFF</color>
+    <!-- red scale -->
+    <color name="dark_red050">#FFF26175</color>
+    <!-- yellow scale -->
+    <color name="dark_yellow050">#FFFFD324</color>
+    <color name="dark_yellow060">#FFFFF028</color>
+    <!-- gray scale -->
+    <color name="dark_gray005">#FF171B1C</color>
+    <color name="dark_gray010">#FF1E2427</color>
+    <color name="dark_gray020">#FF2E363A</color>
+    <color name="dark_gray030">#FF41474C</color>
+    <color name="dark_gray040">#FF5A6166</color>
+    <color name="dark_gray050">#FF999FA4</color>
+    <color name="dark_gray060">#FFC5C8CE</color>
+    <color name="dark_gray070">#FFF7F8F9</color>
+    <color name="dark_gray080">#FFFDFDFD</color>
 </resources>
