@@ -55,6 +55,7 @@
                     android:layout_height="wrap_content"
                     android:text="@{data.name}"
                     android:textSize="18sp"
+                    android:textColor="?colorOnBackground"
                     tools:text="손흥민" />
 
                 <ImageView
@@ -68,14 +69,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/home_birthday"
-                android:textSize="10sp" />
+                android:textSize="10sp"
+                android:textColor="?colorOnBackground" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="15dp"
-            android:background="@drawable/shape_red_line_10_rect"
+            android:background="@drawable/shape_secondary_line_10_rect"
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -89,7 +91,8 @@
                 android:maxLines="1"
                 android:paddingVertical="3dp"
                 android:paddingStart="10dp"
-                android:text="@string/home_gift" />
+                android:text="@string/home_gift"
+                android:textColor="?colorOnBackground" />
 
             <ImageView
                 android:layout_width="wrap_content"
