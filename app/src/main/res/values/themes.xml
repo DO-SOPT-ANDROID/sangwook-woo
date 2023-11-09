@@ -1,9 +1,22 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.DoSoptTemplate" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
-        <item name="colorPrimaryDark">#00BBFF</item>
+        <!-- Primary -->
+        <item name="colorPrimaryDark">@color/blue040</item>
+        <item name="colorPrimary">@color/blue030</item>
+        <item name="colorPrimaryVariant">@color/blue050</item>
+        <item name="colorOnPrimary">@color/gray080</item>
+        <!-- Secondary -->
+        <item name="colorSecondary">@color/coral010</item>
+        <item name="colorOnSecondary">@color/gray080</item>
+        <item name="colorSecondaryVariant">@color/coral050</item>
+        <!-- Surface -->
+        <item name="colorSurface">@color/gray050</item>
+        <item name="colorOnSurface">@color/gray080</item>
+        <item name="colorSurfaceVariant">@color/gray040</item>
+        <!-- Background -->
+        <item name="backgroundColor">@color/white</item>
+        <item name="colorOnBackground">@color/gray070</item>
     </style>
 
     <style name="Theme.DoSoptTemplate" parent="Base.Theme.DoSoptTemplate" />
@@ -13,6 +26,6 @@
         <item name="android:height">@dimen/m3_bottom_nav_item_active_indicator_height</item>
         <item name="marginHorizontal">@dimen/m3_bottom_nav_item_active_indicator_margin_horizontal</item>
         <item name="shapeAppearance">@style/ShapeAppearance.Material3.NavigationBarView.ActiveIndicator</item>
-        <item name="android:color">#38CCEE</item>
+        <item name="android:color">@color/blue030</item>
     </style>
 </resources>
