@@ -21,6 +21,7 @@
             android:layout_marginTop="20dp"
             android:text="@string/add_friend_title"
             android:textSize="20dp"
+            android:textColor="?colorOnBackground"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -33,6 +34,7 @@
             android:layout_marginTop="20dp"
             android:text="@string/add_friend_name"
             android:textSize="20dp"
+            android:textColor="?colorOnBackground"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_add_friend_title" />
 
@@ -43,6 +45,8 @@
             android:layout_marginEnd="20dp"
             android:hint="@string/add_friend_name_hint"
             android:text="@={data.name}"
+            android:textColor="?colorOnBackground"
+            android:backgroundTint="?colorOnBackground"
             app:layout_constraintBottom_toBottomOf="@id/tv_add_friend_name"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/tv_add_friend_name"
@@ -56,6 +60,7 @@
             android:layout_marginTop="50dp"
             android:text="@string/add_friend_music"
             android:textSize="20dp"
+            android:textColor="?colorOnBackground"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_add_friend_name" />
 
@@ -66,6 +71,8 @@
             android:layout_marginEnd="20dp"
             android:hint="@string/add_friend_music_hint"
             android:text="@={data.music}"
+            android:textColor="?colorOnBackground"
+            android:backgroundTint="?colorOnBackground"
             app:layout_constraintBottom_toBottomOf="@id/tv_add_friend_music"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/tv_add_friend_music"
@@ -79,6 +86,7 @@
             android:layout_marginTop="50dp"
             android:text="@string/add_friend_birthday"
             android:textSize="20dp"
+            android:textColor="?colorOnBackground"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_add_friend_music" />
 
@@ -112,9 +120,10 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
             android:layout_marginBottom="40dp"
-            android:backgroundTint="@android:color/holo_blue_bright"
+            android:backgroundTint="?colorPrimary"
             android:text="@string/add_friend_btn_label"
             android:textSize="20dp"
+            android:textColor="?colorOnPrimary"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

@@ -21,6 +21,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:text="@string/signup_title"
+            android:textColor="?colorOnBackground"
             android:textSize="30sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -45,6 +46,7 @@
                     android:layout_marginHorizontal="20dp"
                     android:layout_marginTop="30dp"
                     android:text="@string/signup_id"
+                    android:textColor="?colorOnBackground"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -54,9 +56,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="20dp"
                     android:layout_marginTop="10dp"
+                    android:backgroundTint="?colorOnBackground"
                     android:hint="@string/signup_id_hint"
                     android:inputType="text"
                     android:text="@={vm.id}"
+                    android:textColor="?colorOnBackground"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_signup_id" />
@@ -68,6 +72,7 @@
                     android:layout_marginHorizontal="20dp"
                     android:layout_marginTop="30dp"
                     android:text="@string/signup_pw"
+                    android:textColor="?colorOnBackground"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/et_signup_id" />
 
@@ -77,9 +82,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="20dp"
                     android:layout_marginTop="10dp"
+                    android:backgroundTint="?colorOnBackground"
                     android:hint="@string/signup_pw_hint"
                     android:inputType="textPassword"
                     android:text="@={vm.pw}"
+                    android:textColor="?colorOnBackground"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_signup_pw" />
@@ -91,6 +98,7 @@
                     android:layout_marginHorizontal="20dp"
                     android:layout_marginTop="30dp"
                     android:text="@string/signup_nickname"
+                    android:textColor="?colorOnBackground"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/et_signup_pw" />
 
@@ -100,9 +108,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="20dp"
                     android:layout_marginTop="10dp"
+                    android:backgroundTint="?colorOnBackground"
                     android:hint="@string/signup_nickname_hint"
                     android:inputType="text"
                     android:text="@={vm.nickname}"
+                    android:textColor="?colorOnBackground"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_signup_nickname" />
@@ -114,6 +124,7 @@
                     android:layout_marginHorizontal="20dp"
                     android:layout_marginTop="30dp"
                     android:text="@string/signup_discription"
+                    android:textColor="?colorOnBackground"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/et_signup_nickname" />
 
@@ -123,9 +134,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="20dp"
                     android:layout_marginTop="10dp"
+                    android:backgroundTint="?colorOnBackground"
                     android:hint="@string/signup_discription_hint"
                     android:inputType="text"
                     android:text="@={vm.hobby}"
+                    android:textColor="?colorOnBackground"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_signup_hobby" />
@@ -139,8 +152,9 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
             android:layout_marginBottom="30dp"
-            android:backgroundTint="@android:color/holo_blue_bright"
+            android:backgroundTint="?colorPrimary"
             android:text="@string/signup_signup"
+            android:textColor="?colorOnPrimary"
             app:layout_constraintBottom_toBottomOf="parent" />
 
 
