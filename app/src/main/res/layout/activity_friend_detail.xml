@@ -56,7 +56,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:text="@{data.name}"
-                android:textSize="40dp"
+                android:textAppearance="?textAppearanceHeadlineLarge"
                 android:textColor="?colorOnBackground"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -69,7 +69,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:textSize="30dp"
+                android:textAppearance="?textAppearanceBodyLarge"
                 android:textColor="?colorOnBackground"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -95,7 +95,8 @@
                     android:layout_marginVertical="8dp"
                     android:layout_marginStart="10dp"
                     android:text="@{data.music}"
-                    android:textSize="20dp"
+                    android:textColor="?colorOnBackground"
+                    android:textAppearance="?textAppearanceBodyMedium"
                     tools:text="애국가" />
 
                 <ImageView

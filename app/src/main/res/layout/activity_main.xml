@@ -10,7 +10,6 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="?backgroundColor"
         tools:context=".presentation.main.MainActivity">
 
         <androidx.fragment.app.FragmentContainerView
@@ -27,11 +26,13 @@
             android:id="@+id/bnv_main"
             android:layout_width="0dp"
             android:layout_height="80dp"
-            android:background="?colorPrimary"
-            app:itemBackground="?colorPrimary"
-            app:itemIconTint="?colorOnPrimary"
+            android:background="?colorSurfaceVariant"
+            app:itemTextAppearanceActive="?textAppearanceLabelLarge"
+            app:itemTextAppearanceInactive="?textAppearanceLabelSmall"
+            app:itemBackground="?colorSurfaceVariant"
+            app:itemIconTint="?colorOnSurface"
             app:itemRippleColor="@null"
-            app:itemTextColor="?colorOnPrimary"
+            app:itemTextColor="?colorOnSurface"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

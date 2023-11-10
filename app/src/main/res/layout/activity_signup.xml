@@ -22,7 +22,7 @@
             android:layout_marginTop="30dp"
             android:text="@string/signup_title"
             android:textColor="?colorOnBackground"
-            android:textSize="30sp"
+            android:textAppearance="?textAppearanceHeadlineLarge"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -46,6 +46,7 @@
                     android:layout_marginHorizontal="20dp"
                     android:layout_marginTop="30dp"
                     android:text="@string/signup_id"
+                    android:textAppearance="?textAppearanceBodySmall"
                     android:textColor="?colorOnBackground"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -60,6 +61,7 @@
                     android:hint="@string/signup_id_hint"
                     android:inputType="text"
                     android:text="@={vm.id}"
+                    android:textAppearance="?textAppearanceBody1"
                     android:textColor="?colorOnBackground"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -72,6 +74,7 @@
                     android:layout_marginHorizontal="20dp"
                     android:layout_marginTop="30dp"
                     android:text="@string/signup_pw"
+                    android:textAppearance="?textAppearanceBodySmall"
                     android:textColor="?colorOnBackground"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/et_signup_id" />
@@ -86,6 +89,7 @@
                     android:hint="@string/signup_pw_hint"
                     android:inputType="textPassword"
                     android:text="@={vm.pw}"
+                    android:textAppearance="?textAppearanceBody1"
                     android:textColor="?colorOnBackground"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -98,6 +102,7 @@
                     android:layout_marginHorizontal="20dp"
                     android:layout_marginTop="30dp"
                     android:text="@string/signup_nickname"
+                    android:textAppearance="?textAppearanceBodySmall"
                     android:textColor="?colorOnBackground"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/et_signup_pw" />
@@ -112,6 +117,7 @@
                     android:hint="@string/signup_nickname_hint"
                     android:inputType="text"
                     android:text="@={vm.nickname}"
+                    android:textAppearance="?textAppearanceBody1"
                     android:textColor="?colorOnBackground"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -124,6 +130,7 @@
                     android:layout_marginHorizontal="20dp"
                     android:layout_marginTop="30dp"
                     android:text="@string/signup_discription"
+                    android:textAppearance="?textAppearanceBodySmall"
                     android:textColor="?colorOnBackground"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/et_signup_nickname" />
@@ -138,6 +145,7 @@
                     android:hint="@string/signup_discription_hint"
                     android:inputType="text"
                     android:text="@={vm.hobby}"
+                    android:textAppearance="?textAppearanceBody1"
                     android:textColor="?colorOnBackground"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -154,6 +162,7 @@
             android:layout_marginBottom="30dp"
             android:backgroundTint="?colorPrimary"
             android:text="@string/signup_signup"
+            android:textAppearance="?textAppearanceBodySmall"
             android:textColor="?colorOnPrimary"
             app:layout_constraintBottom_toBottomOf="parent" />
 
