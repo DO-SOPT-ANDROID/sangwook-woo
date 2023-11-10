@@ -37,7 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="50dp"
             android:text="@{data.name}"
-            android:textSize="40sp"
+            android:textAppearance="?textAppearanceHeadlineLarge"
             android:textColor="?colorOnBackground"
             app:layout_constraintStart_toEndOf="@id/cv_home_vp_header_profile"
             app:layout_constraintTop_toTopOf="parent"
@@ -60,7 +60,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@{data.discription}"
-                android:textSize="30dp"
+                android:textAppearance="?textAppearanceBodyLarge"
                 android:textColor="?colorOnBackground"
                 tools:text="상태" />
         </LinearLayout>
