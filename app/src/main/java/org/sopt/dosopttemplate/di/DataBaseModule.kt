@@ -25,3 +25,4 @@ object DataBaseModule {
     @Provides
     fun provideFriendDao(friendDataBase: FriendDataBase) = friendDataBase.friendInfoDao()
 }
+

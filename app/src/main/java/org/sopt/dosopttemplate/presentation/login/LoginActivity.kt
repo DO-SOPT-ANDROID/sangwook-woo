@@ -60,7 +60,7 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
 
     private fun setLoginButtonClickListener(userModel: UserModel?) {
         binding.btnLoginLogin.setOnClickListener {
-            viewModel.login(userModel)
+            viewModel.login()
         }
     }
 
