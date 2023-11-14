@@ -1,8 +1,9 @@
 package org.sopt.dosopttemplate.presentation.signup
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import org.sopt.dosopttemplate.presentation.model.UserModel
 import org.sopt.dosopttemplate.util.view.UiState
 
@@ -12,8 +13,8 @@ class SignupViewModel : ViewModel() {
     val nickname = MutableLiveData<String>()
     val hobby = MutableLiveData<String>()
 
-    private val _signupState = MutableLiveData<UiState<UserModel>>(UiState.Empty)
-    val signupState: LiveData<UiState<UserModel>> get() = _signupState
+    private val _signupState = MutableStateFlow<UiState<UserModel>>(UiState.Empty)
+    val signupState: StateFlow<UiState<UserModel>> get() = _signupState
 
     private fun isValidSignup(): Boolean =
         isValidId(id.value) && isValidPw(pw.value) && isValidNickName(nickname.value) && isValidHobby(

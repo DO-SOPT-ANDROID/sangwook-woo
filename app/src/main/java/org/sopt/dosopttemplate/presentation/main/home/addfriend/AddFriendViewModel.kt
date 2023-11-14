@@ -1,10 +1,11 @@
 package org.sopt.dosopttemplate.presentation.main.home.addfriend
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import org.sopt.dosopttemplate.domain.repository.FriendLocalRepository
 import org.sopt.dosopttemplate.presentation.model.HomeModel
@@ -16,8 +17,9 @@ import javax.inject.Inject
 class AddFriendViewModel @Inject constructor(
     private val friendLocalRepository: FriendLocalRepository
 ) : ViewModel() {
-    private val _addFriendState = MutableLiveData<UiState<HomeModel.FriendInfoModel>>(UiState.Empty)
-    val addFriendState: LiveData<UiState<HomeModel.FriendInfoModel>> get() = _addFriendState
+    private val _addFriendState =
+        MutableStateFlow<UiState<HomeModel.FriendInfoModel>>(UiState.Empty)
+    val addFriendState: StateFlow<UiState<HomeModel.FriendInfoModel>> get() = _addFriendState
     val name = MutableLiveData<String>()
     val music = MutableLiveData<String>()
     val birthday = MutableLiveData<String>()

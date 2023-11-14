@@ -1,10 +1,10 @@
 package org.sopt.dosopttemplate.presentation.main.home
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import org.sopt.dosopttemplate.domain.repository.FriendLocalRepository
 import org.sopt.dosopttemplate.presentation.model.HomeModel
@@ -17,11 +17,11 @@ class HomeViewModel @Inject constructor(
     private val friendLocalRepository: FriendLocalRepository
 ) : ViewModel() {
     private val _friendListState =
-        MutableLiveData<UiState<List<HomeModel.FriendInfoModel>>>(UiState.Empty)
-    val friendListState: LiveData<UiState<List<HomeModel.FriendInfoModel>>> get() = _friendListState
+        MutableStateFlow<UiState<List<HomeModel.FriendInfoModel>>>(UiState.Empty)
+    val friendListState: StateFlow<UiState<List<HomeModel.FriendInfoModel>>> get() = _friendListState
 
-    private val _friendDeleteState = MutableLiveData<UiState<Any>>(UiState.Empty)
-    val friendDeleteState: LiveData<UiState<Any>> get() = _friendDeleteState
+    private val _friendDeleteState = MutableStateFlow<UiState<Any>>(UiState.Empty)
+    val friendDeleteState: StateFlow<UiState<Any>> get() = _friendDeleteState
 
     fun getFriendList() {
         viewModelScope.launch {

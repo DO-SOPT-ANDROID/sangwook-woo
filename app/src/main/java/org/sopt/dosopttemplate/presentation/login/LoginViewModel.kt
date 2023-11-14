@@ -1,9 +1,10 @@
 package org.sopt.dosopttemplate.presentation.login
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import org.sopt.dosopttemplate.domain.repository.SharedPrefRepository
 import org.sopt.dosopttemplate.presentation.model.UserModel
 import org.sopt.dosopttemplate.util.view.UiState
@@ -13,8 +14,8 @@ import javax.inject.Inject
 class LoginViewModel @Inject constructor(
     private val sharedPrefRepository: SharedPrefRepository
 ) : ViewModel() {
-    private val _loginState = MutableLiveData<UiState<UserModel?>>(UiState.Empty)
-    val loginState: LiveData<UiState<UserModel?>> get() = _loginState
+    private val _loginState = MutableStateFlow<UiState<UserModel?>>(UiState.Empty)
+    val loginState: StateFlow<UiState<UserModel?>> get() = _loginState
 
     val id = MutableLiveData<String>()
     val pw = MutableLiveData<String>()

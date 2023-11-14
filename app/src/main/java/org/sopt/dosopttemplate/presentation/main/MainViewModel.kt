@@ -1,9 +1,9 @@
 package org.sopt.dosopttemplate.presentation.main
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import org.sopt.dosopttemplate.domain.repository.SharedPrefRepository
 import org.sopt.dosopttemplate.util.view.UiState
 import javax.inject.Inject
@@ -12,8 +12,8 @@ import javax.inject.Inject
 class MainViewModel @Inject constructor(
     private val sharedPrefRepository: SharedPrefRepository
 ) : ViewModel() {
-    private val _logoutState = MutableLiveData<UiState<String?>>(UiState.Empty)
-    val logoutState: LiveData<UiState<String?>> get() = _logoutState
+    private val _logoutState = MutableStateFlow<UiState<String?>>(UiState.Empty)
+    val logoutState: StateFlow<UiState<String?>> get() = _logoutState
 
     fun logout() {
         runCatching {
