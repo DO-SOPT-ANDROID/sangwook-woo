@@ -1,7 +1,43 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.DoSoptTemplate" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <!-- Primary -->
+        <item name="colorPrimaryDark">@color/dark_blue010</item>
+        <item name="colorPrimary">@color/dark_blue010</item>
+        <item name="colorPrimaryVariant">@color/dark_blue050</item>
+        <item name="colorOnPrimary">@color/dark_gray060</item>
+        <!-- Secondary -->
+        <item name="colorSecondary">@color/dark_coral030</item>
+        <item name="colorOnSecondary">@color/dark_gray010</item>
+        <item name="colorSecondaryVariant">@color/dark_coral010</item>
+        <!-- Surface -->
+        <item name="colorSurface">@color/dark_gray050</item>
+        <item name="colorOnSurface">@color/dark_gray080</item>
+        <item name="colorSurfaceVariant">@color/dark_gray005</item>
+        <!-- Background -->
+        <item name="backgroundColor">@color/black</item>
+        <item name="colorOnBackground">@color/dark_gray050</item>
+
+        <!-- TextAppearance -->
+        <item name="textAppearanceBody1">@style/Typography.DoSopt.Medium_16</item>
+        <item name="textAppearanceBodySmall">@style/Typography.DoSopt.Medium_18</item>
+        <item name="textAppearanceBodyMedium">@style/Typography.DoSopt.Medium_24</item>
+        <item name="textAppearanceBodyLarge">@style/Typography.DoSopt.Medium_28</item>
+        <item name="textAppearanceHeadlineSmall">@style/Typography.DoSopt.Bold_16</item>
+        <item name="textAppearanceHeadlineMedium">@style/Typography.DoSopt.Bold_24</item>
+        <item name="textAppearanceHeadlineLarge">@style/Typography.DoSopt.Bold_32</item>
+        <item name="textAppearanceCaption">@style/Typography.DoSopt.Medium_12</item>
+        <item name="textAppearanceLabelSmall">@style/Typography.DoSopt.Medium_12</item>
+        <item name="textAppearanceLabelLarge">@style/Typography.DoSopt.Medium_14</item>
+    </style>
+
+    <style name="Theme.DoSoptTemplate" parent="Base.Theme.DoSoptTemplate" />
+
+    <style name="Widget.Material3.BottomNavigationView.ActiveIndicator" parent="">
+        <item name="android:width">@dimen/m3_bottom_nav_item_active_indicator_width</item>
+        <item name="android:height">@dimen/m3_bottom_nav_item_active_indicator_height</item>
+        <item name="marginHorizontal">@dimen/m3_bottom_nav_item_active_indicator_margin_horizontal</item>
+        <item name="shapeAppearance">@style/ShapeAppearance.Material3.NavigationBarView.ActiveIndicator</item>
+        <item name="android:color">@color/dark_blue010</item>
     </style>
 </resources>

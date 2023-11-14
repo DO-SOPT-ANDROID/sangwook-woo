@@ -1,9 +1,34 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.DoSoptTemplate" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
-        <item name="colorPrimaryDark">#00BBFF</item>
+        <!-- Primary -->
+        <item name="colorPrimaryDark">@color/blue040</item>
+        <item name="colorPrimary">@color/blue030</item>
+        <item name="colorPrimaryVariant">@color/blue050</item>
+        <item name="colorOnPrimary">@color/gray080</item>
+        <!-- Secondary -->
+        <item name="colorSecondary">@color/coral010</item>
+        <item name="colorOnSecondary">@color/gray080</item>
+        <item name="colorSecondaryVariant">@color/coral050</item>
+        <!-- Surface -->
+        <item name="colorSurface">@color/gray050</item>
+        <item name="colorOnSurface">@color/gray080</item>
+        <item name="colorSurfaceVariant">@color/gray020</item>
+        <!-- Background -->
+        <item name="backgroundColor">@color/white</item>
+        <item name="colorOnBackground">@color/gray070</item>
+
+        <!-- TextAppearance -->
+        <item name="textAppearanceBody1">@style/Typography.DoSopt.Medium_16</item>
+        <item name="textAppearanceBodySmall">@style/Typography.DoSopt.Medium_18</item>
+        <item name="textAppearanceBodyMedium">@style/Typography.DoSopt.Medium_24</item>
+        <item name="textAppearanceBodyLarge">@style/Typography.DoSopt.Medium_28</item>
+        <item name="textAppearanceHeadlineSmall">@style/Typography.DoSopt.Bold_16</item>
+        <item name="textAppearanceHeadlineMedium">@style/Typography.DoSopt.Bold_24</item>
+        <item name="textAppearanceHeadlineLarge">@style/Typography.DoSopt.Bold_32</item>
+        <item name="textAppearanceCaption">@style/Typography.DoSopt.Medium_12</item>
+        <item name="textAppearanceLabelSmall">@style/Typography.DoSopt.Medium_12</item>
+        <item name="textAppearanceLabelLarge">@style/Typography.DoSopt.Medium_14</item>
     </style>
 
     <style name="Theme.DoSoptTemplate" parent="Base.Theme.DoSoptTemplate" />
@@ -13,6 +38,6 @@
         <item name="android:height">@dimen/m3_bottom_nav_item_active_indicator_height</item>
         <item name="marginHorizontal">@dimen/m3_bottom_nav_item_active_indicator_margin_horizontal</item>
         <item name="shapeAppearance">@style/ShapeAppearance.Material3.NavigationBarView.ActiveIndicator</item>
-        <item name="android:color">#38CCEE</item>
+        <item name="android:color">@color/blue050</item>
     </style>
 </resources>

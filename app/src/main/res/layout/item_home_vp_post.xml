@@ -38,7 +38,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="50dp"
             android:text="@{data.name}"
-            android:textSize="40sp"
+            android:textAppearance="?textAppearanceHeadlineLarge"
+            android:textColor="?colorOnBackground"
             app:layout_constraintStart_toEndOf="@id/cv_home_vp_header_profile"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="호날두" />
@@ -48,7 +49,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="오늘 생일입니다."
-            android:textSize="20dp"
+            android:textAppearance="?textAppearanceBodyMedium"
+            android:textColor="?colorOnBackground"
             app:layout_constraintStart_toStartOf="@id/tv_home_vp_header_name"
             app:layout_constraintTop_toBottomOf="@id/tv_home_vp_header_name" />
 
@@ -69,7 +71,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
             android:layout_marginBottom="50dp"
-            android:background="@drawable/shape_purple_line_50_rect"
+            android:background="@drawable/shape_primary_line_50_rect"
             android:orientation="horizontal"
             android:padding="8dp"
             android:paddingStart="15dp"
@@ -80,7 +82,8 @@
                 Music="@{data.music}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20dp"
+                android:textAppearance="?textAppearanceBody1"
+                android:textColor="?colorOnBackground"
                 tools:text="음악악악악악" />
 
             <ImageView
@@ -96,7 +99,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
-            android:background="@drawable/shape_red_line_50_rect"
+            android:background="@drawable/shape_secondary_line_50_rect"
             android:orientation="horizontal"
             android:padding="8dp"
             android:paddingStart="15dp"
@@ -107,7 +110,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/home_vp_post_birthday"
-                android:textSize="30sp" />
+                android:textAppearance="?textAppearanceBodyMedium"
+                android:textColor="?colorOnBackground"/>
 
             <ImageView
                 android:layout_width="match_parent"
