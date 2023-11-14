@@ -1,9 +1,9 @@
-package org.sopt.dosopttemplate.data.datasource
+package org.sopt.dosopttemplate.data.datasourceimpl.local
 
 import android.content.SharedPreferences
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
-import org.sopt.dosopttemplate.data.local.SharedPrefDataSource
+import org.sopt.dosopttemplate.data.datasource.local.SharedPrefDataSource
 import org.sopt.dosopttemplate.data.model.local.UserDto
 import javax.inject.Inject
 

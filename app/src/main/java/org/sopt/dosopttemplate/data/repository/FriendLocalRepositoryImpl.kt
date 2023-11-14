@@ -1,6 +1,6 @@
 package org.sopt.dosopttemplate.data.repository
 
-import org.sopt.dosopttemplate.data.local.FriendLocalDataSource
+import org.sopt.dosopttemplate.data.datasource.local.FriendLocalDataSource
 import org.sopt.dosopttemplate.data.model.local.FriendInfoEntity.Companion.toFriend
 import org.sopt.dosopttemplate.data.model.local.FriendInfoEntity.Companion.toFriendInfoEntity
 import org.sopt.dosopttemplate.domain.entity.Friend

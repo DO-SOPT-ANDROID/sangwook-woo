@@ -1,7 +1,7 @@
-package org.sopt.dosopttemplate.data.datasource
+package org.sopt.dosopttemplate.data.datasourceimpl.local
 
 import org.sopt.dosopttemplate.data.database.FriendDataBase
-import org.sopt.dosopttemplate.data.local.FriendLocalDataSource
+import org.sopt.dosopttemplate.data.datasource.local.FriendLocalDataSource
 import org.sopt.dosopttemplate.data.model.local.FriendInfoEntity
 import javax.inject.Inject
 

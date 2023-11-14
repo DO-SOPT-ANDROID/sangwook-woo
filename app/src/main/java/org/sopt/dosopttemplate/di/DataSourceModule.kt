@@ -4,10 +4,10 @@ import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import org.sopt.dosopttemplate.data.datasource.FriendLocalDataSourceImpl
-import org.sopt.dosopttemplate.data.datasource.SharedPrefDataSourceImpl
-import org.sopt.dosopttemplate.data.local.FriendLocalDataSource
-import org.sopt.dosopttemplate.data.local.SharedPrefDataSource
+import org.sopt.dosopttemplate.data.datasourceimpl.local.FriendLocalDataSourceImpl
+import org.sopt.dosopttemplate.data.datasourceimpl.local.SharedPrefDataSourceImpl
+import org.sopt.dosopttemplate.data.datasource.local.FriendLocalDataSource
+import org.sopt.dosopttemplate.data.datasource.local.SharedPrefDataSource
 import javax.inject.Singleton
 
 @Module
