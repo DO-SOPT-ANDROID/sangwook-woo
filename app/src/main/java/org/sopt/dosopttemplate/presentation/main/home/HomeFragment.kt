@@ -8,7 +8,10 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.flowWithLifecycle
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import org.sopt.dosopttemplate.R
 import org.sopt.dosopttemplate.databinding.FragmentHomeBinding
 import org.sopt.dosopttemplate.presentation.main.home.addfriend.AddFriendActivity
@@ -17,6 +20,8 @@ import org.sopt.dosopttemplate.presentation.model.HomeModel
 import org.sopt.dosopttemplate.presentation.model.UserModel
 import org.sopt.dosopttemplate.util.binding.BindingFragment
 import org.sopt.dosopttemplate.util.fragment.AlertDialogFragment
+import org.sopt.dosopttemplate.util.fragment.viewLifeCycle
+import org.sopt.dosopttemplate.util.fragment.viewLifeCycleScope
 import org.sopt.dosopttemplate.util.intent.getParcelable
 import org.sopt.dosopttemplate.util.view.UiState
 import org.sopt.dosopttemplate.util.view.snackBar
@@ -41,7 +46,7 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
     }
 
     private fun initFriendDeleteStateObserver() {
-        viewModel.friendDeleteState.observe(viewLifecycleOwner) { state ->
+        viewModel.friendDeleteState.flowWithLifecycle(viewLifeCycle).onEach { state ->
             when (state) {
                 is UiState.Success -> {
                     getFriendList()
@@ -53,7 +58,7 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
 
                 else -> {}
             }
-        }
+        }.launchIn(viewLifeCycleScope)
     }
 
     private fun initFloatingBtnClickListener() {
@@ -146,7 +151,7 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
     }
 
     private fun initFriendListStateObserver() {
-        viewModel.friendListState.observe(viewLifecycleOwner) { state ->
+        viewModel.friendListState.flowWithLifecycle(viewLifeCycle).onEach { state ->
             when (state) {
                 is UiState.Success -> {
                     submitHomeList(state)
@@ -159,7 +164,7 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
 
                 else -> {}
             }
-        }
+        }.launchIn(viewLifeCycleScope)
     }
 
     fun scrollTop() {

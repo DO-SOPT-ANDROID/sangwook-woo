@@ -5,7 +5,11 @@ import android.os.Bundle
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
+import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import org.sopt.dosopttemplate.R
 import org.sopt.dosopttemplate.databinding.ActivityLoginBinding
 import org.sopt.dosopttemplate.presentation.main.MainActivity
@@ -28,7 +32,7 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
         initResultLauncher()
         initSignupButtonClickListener()
         initLoginButtonClickListener()
-        initloginStateObserver()
+        initLoginStateObserver()
         initHideKeyboard()
     }
 
@@ -64,8 +68,8 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
         }
     }
 
-    private fun initloginStateObserver() {
-        viewModel.loginState.observe(this) { state ->
+    private fun initLoginStateObserver() {
+        viewModel.loginState.flowWithLifecycle(lifecycle).onEach { state ->
             when (state) {
                 is UiState.Success -> {
                     navigateToMainScreenWithUserData(state.data)
@@ -74,7 +78,7 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
                 is UiState.Empty -> {}
                 else -> binding.root.snackBar { getString(R.string.login_fail_login) }
             }
-        }
+        }.launchIn(lifecycleScope)
     }
 
     private fun navigateToMainScreenWithUserData(userModel: UserModel?) {

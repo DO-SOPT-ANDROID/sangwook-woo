@@ -2,8 +2,12 @@ package org.sopt.dosopttemplate.presentation.main.home.addfriend
 
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.lifecycleScope
 import com.google.android.material.datepicker.MaterialDatePicker
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import org.sopt.dosopttemplate.R
 import org.sopt.dosopttemplate.databinding.ActivityAddFriendBinding
 import org.sopt.dosopttemplate.util.activity.hideKeyboard
@@ -27,7 +31,7 @@ class AddFriendActivity : BindingActivity<ActivityAddFriendBinding>(R.layout.act
     }
 
     private fun initAddFriendStateObserver() {
-        viewModel.addFriendState.observe(this) { state ->
+        viewModel.addFriendState.flowWithLifecycle(lifecycle).onEach { state ->
             when (state) {
                 is UiState.Success -> {
                     setResult(RESULT_OK, intent)
@@ -49,7 +53,7 @@ class AddFriendActivity : BindingActivity<ActivityAddFriendBinding>(R.layout.act
                 else -> {
                 }
             }
-        }
+        }.launchIn(lifecycleScope)
     }
 
     private fun initFriendAddBtnClickListener() {

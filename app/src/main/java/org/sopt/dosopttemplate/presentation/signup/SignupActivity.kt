@@ -2,6 +2,10 @@ package org.sopt.dosopttemplate.presentation.signup
 
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import org.sopt.dosopttemplate.R
 import org.sopt.dosopttemplate.databinding.ActivitySignupBinding
 import org.sopt.dosopttemplate.presentation.model.UserModel
@@ -33,7 +37,7 @@ class SignupActivity : BindingActivity<ActivitySignupBinding>(R.layout.activity_
     }
 
     private fun initSignupStateObserver() {
-        viewModel.signupState.observe(this) { state ->
+        viewModel.signupState.flowWithLifecycle(lifecycle).onEach { state ->
             when (state) {
                 is UiState.Success -> {
                     intent.putExtra(USER_KEY, state.data)
@@ -47,7 +51,7 @@ class SignupActivity : BindingActivity<ActivitySignupBinding>(R.layout.activity_
 
                 else -> {}
             }
-        }
+        }.launchIn(lifecycleScope)
     }
 
     private fun handleFailureState(msg: String) {
