@@ -18,7 +18,6 @@ import org.sopt.dosopttemplate.presentation.signup.SignupActivity
 import org.sopt.dosopttemplate.util.activity.hideKeyboard
 import org.sopt.dosopttemplate.util.binding.BindingActivity
 import org.sopt.dosopttemplate.util.context.toast
-import org.sopt.dosopttemplate.util.intent.getParcelable
 import org.sopt.dosopttemplate.util.view.UiState
 import org.sopt.dosopttemplate.util.view.snackBar
 
@@ -41,10 +40,7 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
             ActivityResultContracts.StartActivityForResult()
         ) { result ->
             if (result.resultCode == RESULT_OK) {
-                val userModel = result.data?.getParcelable(USER_KEY, UserModel::class.java)
-                viewModel.setAutoLogin(userModel)
                 binding.root.snackBar { getString(R.string.login_success_signup) }
-                setLoginButtonClickListener(userModel)
             }
         }
     }
@@ -59,12 +55,6 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
     private fun initLoginButtonClickListener() {
         binding.btnLoginLogin.setOnClickListener {
             viewModel.login()
-        }
-    }
-
-    private fun setLoginButtonClickListener(userModel: UserModel?) {
-        binding.btnLoginLogin.setOnClickListener {
-            viewModel.login(userModel)
         }
     }
 
@@ -85,7 +75,6 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
         val intent = Intent(this, MainActivity::class.java)
         intent.putExtra(USER_KEY, userModel)
         this.toast(getString(R.string.login_success_login))
-        viewModel.setAutoLogin(userModel)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)
     }
