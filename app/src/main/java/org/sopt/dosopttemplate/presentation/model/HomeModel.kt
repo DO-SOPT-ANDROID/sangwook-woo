@@ -1,8 +1,11 @@
 package org.sopt.dosopttemplate.presentation.model
 
 import android.os.Parcelable
+import androidx.paging.PagingData
+import androidx.paging.map
 import kotlinx.parcelize.Parcelize
 import org.sopt.dosopttemplate.domain.entity.Friend
+import org.sopt.dosopttemplate.domain.entity.ReqresUser
 import java.time.LocalDate
 
 sealed class HomeModel {
@@ -18,6 +21,37 @@ sealed class HomeModel {
         }
     }
 
+    @Parcelize
+    data class UserInfoModel(
+        override val id: Int?,
+        val firstName: String?,
+        val lastName: String?,
+        val email: String?,
+        val avatar: String?
+    ): HomeModel(), Parcelable {
+        companion object {
+
+            fun toUserInfoModel(userList: PagingData<ReqresUser>) = userList.map { data ->
+                UserInfoModel(
+                    id = data.id,
+                    firstName = data.firstName,
+                    lastName = data.lastName,
+                    email = data.email,
+                    avatar = data.avatar
+                )
+            }
+
+            fun toReqresUser(userInfoList: List<UserInfoModel>) = userInfoList.map { data ->
+                ReqresUser(
+                    id = data.id,
+                    firstName = data.firstName,
+                    lastName = data.lastName,
+                    email = data.email,
+                    avatar = data.avatar
+                )
+            }
+        }
+    }
     @Parcelize
     data class FriendInfoModel(
         override val id: Int?,
