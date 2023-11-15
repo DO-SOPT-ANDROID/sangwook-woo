@@ -7,7 +7,7 @@
 
         <variable
             name="data"
-            type="org.sopt.dosopttemplate.presentation.model.HomeModel.FriendInfoModel" />
+            type="org.sopt.dosopttemplate.domain.entity.ReqresUser" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -25,7 +25,7 @@
             app:strokeWidth="0dp">
 
             <ImageView
-                setImageUrl="@{data.imageUri}"
+                setImageUrl="@{data.avatar}"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
@@ -33,11 +33,11 @@
         </com.google.android.material.card.MaterialCardView>
 
         <TextView
-            android:id="@+id/tv_home_vp_header_name"
+            android:id="@+id/tv_home_vp_header_first_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="50dp"
-            android:text="@{data.name}"
+            android:text="@{data.firstName}"
             android:textAppearance="?textAppearanceHeadlineLarge"
             android:textColor="?colorOnBackground"
             app:layout_constraintStart_toEndOf="@id/cv_home_vp_header_profile"
@@ -45,28 +45,23 @@
             tools:text="호날두" />
 
         <TextView
-            birthDay="@{data.birthday}"
+            android:id="@+id/tv_home_vp_header_last_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="오늘 생일입니다."
-            android:textAppearance="?textAppearanceBodyMedium"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="50dp"
+            android:text="@{data.lastName}"
+            android:textAppearance="?textAppearanceHeadlineLarge"
             android:textColor="?colorOnBackground"
-            app:layout_constraintStart_toStartOf="@id/tv_home_vp_header_name"
-            app:layout_constraintTop_toBottomOf="@id/tv_home_vp_header_name" />
+            app:layout_constraintStart_toEndOf="@id/cv_home_vp_header_profile"
+            app:layout_constraintTop_toBottomOf="@id/tv_home_vp_header_first_name"
+            tools:text="호날두" />
 
-        <ImageView
-            android:id="@+id/iv_home_vp_post_cake"
-            birthDay="@{data.birthday}"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/baseline_cake_40"
-            app:layout_constraintBottom_toBottomOf="@id/tv_home_vp_header_name"
-            app:layout_constraintStart_toEndOf="@id/tv_home_vp_header_name"
-            app:layout_constraintTop_toTopOf="@id/tv_home_vp_header_name" />
+
 
         <LinearLayout
             android:id="@+id/ll_home_vp_post_music"
-            Music="@{data.music}"
+            Music="@{data.email}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
@@ -76,10 +71,10 @@
             android:padding="8dp"
             android:paddingStart="15dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@id/tv_home_vp_header_name">
+            app:layout_constraintStart_toStartOf="@id/tv_home_vp_header_first_name">
 
             <TextView
-                Music="@{data.music}"
+                Music="@{data.email}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?textAppearanceBody1"
@@ -91,33 +86,6 @@
                 android:layout_height="match_parent"
                 android:scaleType="fitCenter"
                 android:src="@drawable/baseline_play_arrow_40" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/ll_home_vp_post_birthday"
-            birthDay="@{data.birthday}"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:background="@drawable/shape_secondary_line_50_rect"
-            android:orientation="horizontal"
-            android:padding="8dp"
-            android:paddingStart="15dp"
-            app:layout_constraintStart_toStartOf="@id/tv_home_vp_header_name"
-            app:layout_constraintTop_toBottomOf="@id/tv_home_vp_header_name">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/home_vp_post_birthday"
-                android:textAppearance="?textAppearanceBodyMedium"
-                android:textColor="?colorOnBackground"/>
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="fitCenter"
-                android:src="@drawable/baseline_cake_40" />
         </LinearLayout>
 
 
