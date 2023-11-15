@@ -1,4 +1,4 @@
-package org.sopt.dosopttemplate.data.repository.local
+package org.sopt.dosopttemplate.data.repository
 
 import org.sopt.dosopttemplate.data.datasource.local.SharedPrefDataSource
 import org.sopt.dosopttemplate.data.model.local.UserDto

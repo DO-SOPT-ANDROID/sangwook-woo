@@ -1,7 +1,6 @@
-package org.sopt.dosopttemplate.data.repository.remote
+package org.sopt.dosopttemplate.data.repository
 
 import org.sopt.dosopttemplate.data.datasource.remote.AuthDataSource
-import org.sopt.dosopttemplate.data.datasourceimpl.remote.AuthDataSourceImpl
 import org.sopt.dosopttemplate.data.model.remote.request.RequestLoginDto
 import org.sopt.dosopttemplate.data.model.remote.request.RequestSignupDto
 import org.sopt.dosopttemplate.domain.entity.User

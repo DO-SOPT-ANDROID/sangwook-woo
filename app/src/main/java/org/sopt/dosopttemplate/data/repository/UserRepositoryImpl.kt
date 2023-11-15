@@ -1,4 +1,4 @@
-package org.sopt.dosopttemplate.data.repository.remote
+package org.sopt.dosopttemplate.data.repository
 
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
