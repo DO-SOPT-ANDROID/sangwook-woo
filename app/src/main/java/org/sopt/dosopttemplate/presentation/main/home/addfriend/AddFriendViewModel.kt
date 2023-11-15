@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import org.sopt.dosopttemplate.domain.repository.FriendLocalRepository
 import org.sopt.dosopttemplate.presentation.model.HomeModel
@@ -19,7 +20,7 @@ class AddFriendViewModel @Inject constructor(
 ) : ViewModel() {
     private val _addFriendState =
         MutableStateFlow<UiState<HomeModel.FriendInfoModel>>(UiState.Empty)
-    val addFriendState: StateFlow<UiState<HomeModel.FriendInfoModel>> get() = _addFriendState
+    val addFriendState: StateFlow<UiState<HomeModel.FriendInfoModel>> = _addFriendState.asStateFlow()
     val name = MutableLiveData<String>()
     val music = MutableLiveData<String>()
     val birthday = MutableLiveData<String>()
