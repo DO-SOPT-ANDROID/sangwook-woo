@@ -3,6 +3,7 @@ package org.sopt.dosopttemplate.presentation.main.home
 import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -14,9 +15,11 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import org.sopt.dosopttemplate.R
 import org.sopt.dosopttemplate.databinding.FragmentHomeBinding
+import org.sopt.dosopttemplate.domain.entity.ReqresUser
 import org.sopt.dosopttemplate.presentation.main.home.addfriend.AddFriendActivity
 import org.sopt.dosopttemplate.presentation.main.home.frienddetail.FriendDetailActivity
 import org.sopt.dosopttemplate.presentation.model.HomeModel
+import org.sopt.dosopttemplate.presentation.model.UserInfoModel
 import org.sopt.dosopttemplate.presentation.model.UserModel
 import org.sopt.dosopttemplate.util.binding.BindingFragment
 import org.sopt.dosopttemplate.util.fragment.AlertDialogFragment
@@ -31,16 +34,15 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
     private lateinit var resultLauncher: ActivityResultLauncher<Intent>
     private val viewModel by viewModels<HomeViewModel>()
     lateinit var myInfo: HomeModel.MyInfoModel
-    lateinit var homeAdapter: HomeAdapter
-    lateinit var homeVpAdapter: HomeVpAdapter
+    lateinit var userPagingAdapter: HomeAdapter
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initOrientationCheck()
+
+        initHomeAdapter()
         initFloatingBtnClickListener()
         initFriendDeleteStateObserver()
         initResultLauncher()
-        initHomeAdapter()
-        initFriendListStateObserver()
+        initUserListStateObserver()
         getMyInfo()
         getFriendList()
     }
@@ -67,76 +69,21 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
         }
     }
 
-    override fun onConfigurationChanged(newConfig: Configuration) {
-        super.onConfigurationChanged(newConfig)
-        when (resources.configuration.orientation) {
-            Configuration.ORIENTATION_PORTRAIT -> {
-                binding.rvHome.visibility = View.VISIBLE
-                binding.vpHome.visibility = View.INVISIBLE
-            }
-
-            Configuration.ORIENTATION_LANDSCAPE -> {
-                binding.vpHome.visibility = View.VISIBLE
-                binding.rvHome.visibility = View.INVISIBLE
-            }
-
-            else -> {}
-        }
-    }
-
-    private fun initOrientationCheck() {
-        when (resources.configuration.orientation) {
-            Configuration.ORIENTATION_PORTRAIT -> {
-                binding.rvHome.visibility = View.VISIBLE
-                binding.vpHome.visibility = View.INVISIBLE
-            }
-
-            Configuration.ORIENTATION_LANDSCAPE -> {
-                binding.vpHome.visibility = View.VISIBLE
-                binding.rvHome.visibility = View.INVISIBLE
-            }
-
-            else -> {}
-        }
-    }
-
     private fun initHomeAdapter() {
-        runCatching {
-            homeAdapter = HomeAdapter(
-                onLongClicked = { friend ->
-                    showFriendDeleteAlertDialogFragment(friend.id)
-                },
-                onClicked = { friend ->
-                    initHomeAdapterOnClicked(friend)
-                }
-            )
-            binding.rvHome.adapter = homeAdapter
-        }.onFailure { t ->
-            if (t is IllegalArgumentException) {
-                t.printStackTrace()
+        userPagingAdapter = HomeAdapter(
+            onLongClicked = {
+            },
+            onClicked = { friend ->
+                initHomeAdapterOnClicked(friend)
             }
-        }
-
-        runCatching {
-            homeVpAdapter = HomeVpAdapter(
-                onLongClicked = { friend ->
-                    showFriendDeleteAlertDialogFragment(friend.id)
-                },
-                onClicked = { friend ->
-                    initHomeAdapterOnClicked(friend)
-                }
-            )
-            binding.vpHome.adapter = homeVpAdapter
-        }.onFailure { t ->
-            if (t is IllegalArgumentException) {
-                t.printStackTrace()
-            }
-        }
+        )
+        binding.rvHome.adapter = userPagingAdapter
     }
 
-    private fun initHomeAdapterOnClicked(friend: HomeModel.FriendInfoModel) {
+    private fun initHomeAdapterOnClicked(friend: ReqresUser) {
         val intent = Intent(requireContext(), FriendDetailActivity::class.java)
-        intent.putExtra(FRIEND_KEY, friend)
+        val user = UserInfoModel.toUserInfoModel(friend)
+        intent.putExtra(USER_KEY,user)
         startActivity(intent)
     }
 
@@ -145,40 +92,27 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
             ActivityResultContracts.StartActivityForResult()
         ) { result ->
             if (result.resultCode == AppCompatActivity.RESULT_OK) {
-                viewModel.getFriendList()
+                viewModel.getUsers()
             }
         }
     }
 
-    private fun initFriendListStateObserver() {
-        viewModel.friendListState.flowWithLifecycle(viewLifeCycle).onEach { state ->
+    private fun initUserListStateObserver() {
+        viewModel.userListState.flowWithLifecycle(viewLifeCycle).onEach { state ->
             when (state) {
                 is UiState.Success -> {
-                    submitHomeList(state)
-                    submitHomeVpList(state)
+                    userPagingAdapter.submitData(state.data)
                 }
 
-                is UiState.Failure -> {
-                    binding.root.snackBar { state.msg }
-                }
+                else -> {
 
-                else -> {}
+                }
             }
         }.launchIn(viewLifeCycleScope)
     }
 
     fun scrollTop() {
         binding.rvHome.smoothScrollToPosition(0)
-    }
-
-    private fun submitHomeList(state: UiState.Success<List<HomeModel.FriendInfoModel>>) {
-        val list = listOf(myInfo) + state.data.sortedBy { it.name }
-        homeAdapter.submitList(list)
-    }
-
-    private fun submitHomeVpList(state: UiState.Success<List<HomeModel.FriendInfoModel>>) {
-        val list = listOf(myInfo) + state.data.sortedBy { it.name }
-        homeVpAdapter.submitList(list)
     }
 
     private fun getMyInfo() {
@@ -188,7 +122,7 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
     }
 
     private fun getFriendList() {
-        viewModel.getFriendList()
+        viewModel.getUsers()
     }
 
     private fun navigateToAddFriendScreen() {
@@ -196,22 +130,7 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
         resultLauncher.launch(intent)
     }
 
-    private fun showFriendDeleteAlertDialogFragment(id: Int?) {
-        val dialog = AlertDialogFragment.newInstance(
-            getString(R.string.home_alert_title),
-            getString(R.string.home_alert_negative_label),
-            getString(R.string.home_alert_positive_label),
-            handleNegativeButton = {
-            },
-            handlePositiveButton = {
-                viewModel.deleteUser(id)
-            })
-        dialog.show(parentFragmentManager, FRIEND_DELETE_TAG)
-    }
-
     companion object {
         private const val USER_KEY = "user"
-        private const val FRIEND_KEY = "friend"
-        private const val FRIEND_DELETE_TAG = "friend delete"
     }
 }
