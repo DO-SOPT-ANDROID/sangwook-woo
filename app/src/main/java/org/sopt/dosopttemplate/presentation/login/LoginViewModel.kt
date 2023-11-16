@@ -4,10 +4,13 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import org.sopt.dosopttemplate.data.ServicePool
 import org.sopt.dosopttemplate.data.model.remote.request.RequestLoginDto
 import org.sopt.dosopttemplate.data.model.remote.response.ResponseLoginDto
+import org.sopt.dosopttemplate.data.service.AuthService
 import org.sopt.dosopttemplate.domain.repository.SharedPrefRepository
 import org.sopt.dosopttemplate.presentation.model.UserModel
 import org.sopt.dosopttemplate.util.view.UiState
@@ -47,27 +50,17 @@ class LoginViewModel @Inject constructor(
             password = pw.value
         )
 
-        ServicePool.authService.login(user)
-            .enqueue(object : retrofit2.Callback<ResponseLoginDto> {
-                override fun onResponse(
-                    call: Call<ResponseLoginDto>,
-                    response: Response<ResponseLoginDto>,
-                ) {
-                    if (response.isSuccessful) {
-                        val data: ResponseLoginDto = response.body()!!
-                        _loginState.value = UiState.Success(UserModel(
-                            id = data.userName,
-                            pw = pw.value,
-                            nickname = data.userName,
-                            discription = "",
-                        ))
-                    }
+        viewModelScope.launch {
+            runCatching { ServicePool.authService.login(user) }
+                .onSuccess { response ->
+                    _loginState.value = UiState.Success(UserModel(
+                        id = response.userName , nickname = response.nickname
+                    ))
                 }
-
-                override fun onFailure(call: Call<ResponseLoginDto>, t: Throwable) {
-                    Log.e("error","${t.message}")
+                .onFailure{
+                    //실패 처리
                 }
-            })
+        }
     }
 
     private fun autoLogin() {
