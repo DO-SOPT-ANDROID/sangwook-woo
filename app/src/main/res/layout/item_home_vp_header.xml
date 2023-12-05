@@ -32,7 +32,7 @@
         </com.google.android.material.card.MaterialCardView>
 
         <TextView
-            android:id="@+id/tv_home_vp_header_name"
+            android:id="@+id/tv_home_vp_header_first_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="50dp"
@@ -53,8 +53,8 @@
             android:padding="8dp"
             android:paddingStart="15dp"
             android:paddingEnd="15dp"
-            app:layout_constraintStart_toStartOf="@id/tv_home_vp_header_name"
-            app:layout_constraintTop_toBottomOf="@id/tv_home_vp_header_name">
+            app:layout_constraintStart_toStartOf="@id/tv_home_vp_header_first_name"
+            app:layout_constraintTop_toBottomOf="@id/tv_home_vp_header_first_name">
 
             <TextView
                 android:layout_width="wrap_content"

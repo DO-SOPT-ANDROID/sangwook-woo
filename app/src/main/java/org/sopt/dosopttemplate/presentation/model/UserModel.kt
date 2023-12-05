@@ -11,6 +11,11 @@ data class UserModel(
     val nickname: String? = "",
     val discription: String? = ""
 ) : Parcelable {
+    companion object {
+        fun toUserModel(user: User?): UserModel {
+            return UserModel(user?.id, user?.pw, user?.nickname, user?.discription)
+        }
+    }
     fun toUserModel(user: User?): UserModel {
         return UserModel(user?.id, user?.pw, user?.nickname, user?.discription)
     }

@@ -7,7 +7,7 @@
 
         <variable
             name="data"
-            type="org.sopt.dosopttemplate.presentation.model.HomeModel.FriendInfoModel" />
+            type="org.sopt.dosopttemplate.domain.entity.ReqresUser" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -27,7 +27,7 @@
             app:strokeWidth="0dp">
 
             <ImageView
-                setImageUrl="@{data.imageUri}"
+                setImageUrl="@{data.avatar}"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:scaleType="centerCrop"
@@ -48,14 +48,22 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{data.name}"
+                android:text="@{data.firstName}"
+                android:textAppearance="?textAppearanceBodySmall"
+                android:textColor="?colorOnBackground"
+                tools:text="손흥민" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{data.lastName}"
                 android:textAppearance="?textAppearanceBodySmall"
                 android:textColor="?colorOnBackground"
                 tools:text="손흥민" />
         </LinearLayout>
 
         <LinearLayout
-            Music="@{data.music}"
+            Music="@{data.email}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="15dp"
@@ -68,7 +76,7 @@
             app:layout_constraintWidth_max="200dp">
 
             <TextView
-                Music="@{data.music}"
+                Music="@{data.email}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"

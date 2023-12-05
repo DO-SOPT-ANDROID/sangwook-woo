@@ -1,6 +1,6 @@
 package org.sopt.dosopttemplate.data.repository
 
-import org.sopt.dosopttemplate.data.local.SharedPrefDataSource
+import org.sopt.dosopttemplate.data.datasource.local.SharedPrefDataSource
 import org.sopt.dosopttemplate.data.model.local.UserDto
 import org.sopt.dosopttemplate.domain.entity.User
 import org.sopt.dosopttemplate.domain.repository.SharedPrefRepository

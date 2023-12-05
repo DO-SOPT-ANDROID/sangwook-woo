@@ -2,14 +2,19 @@ package org.sopt.dosopttemplate.presentation.signup
 
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.lifecycleScope
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import org.sopt.dosopttemplate.R
 import org.sopt.dosopttemplate.databinding.ActivitySignupBinding
-import org.sopt.dosopttemplate.presentation.model.UserModel
 import org.sopt.dosopttemplate.util.activity.hideKeyboard
 import org.sopt.dosopttemplate.util.binding.BindingActivity
 import org.sopt.dosopttemplate.util.view.UiState
 import org.sopt.dosopttemplate.util.view.snackBar
 
+@AndroidEntryPoint
 class SignupActivity : BindingActivity<ActivitySignupBinding>(R.layout.activity_signup) {
     private val viewModel by viewModels<SignupViewModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,21 +27,14 @@ class SignupActivity : BindingActivity<ActivitySignupBinding>(R.layout.activity_
 
     private fun initSignupButtonClickListener() {
         binding.btnSignupSignup.setOnClickListener {
-            val userModel = UserModel(
-                binding.etSignupId.text.toString(),
-                binding.etSignupPw.text.toString(),
-                binding.etSignupNickname.text.toString(),
-                binding.etSignupHobby.text.toString()
-            )
-            viewModel.signUp(userModel)
+            viewModel.signUp()
         }
     }
 
     private fun initSignupStateObserver() {
-        viewModel.signupState.observe(this) { state ->
+        viewModel.signupState.flowWithLifecycle(lifecycle).onEach { state ->
             when (state) {
                 is UiState.Success -> {
-                    intent.putExtra(USER_KEY, state.data)
                     setResult(RESULT_OK, intent)
                     finish()
                 }
@@ -47,7 +45,7 @@ class SignupActivity : BindingActivity<ActivitySignupBinding>(R.layout.activity_
 
                 else -> {}
             }
-        }
+        }.launchIn(lifecycleScope)
     }
 
     private fun handleFailureState(msg: String) {

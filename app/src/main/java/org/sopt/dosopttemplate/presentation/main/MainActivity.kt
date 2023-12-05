@@ -7,7 +7,11 @@ import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import androidx.fragment.app.replace
+import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import org.sopt.dosopttemplate.R
 import org.sopt.dosopttemplate.databinding.ActivityMainBinding
 import org.sopt.dosopttemplate.presentation.login.LoginActivity
@@ -53,7 +57,7 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
     }
 
     private fun initLogoutStateObserver() {
-        viewModel.logoutState.observe(this) { state ->
+        viewModel.logoutState.flowWithLifecycle(lifecycle).onEach { state ->
             when (state) {
                 is UiState.Success -> {
                     when (state.data) {
@@ -65,7 +69,7 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
 
                 else -> {}
             }
-        }
+        }.launchIn(lifecycleScope)
     }
 
     private fun navigateToLoginScreen() {

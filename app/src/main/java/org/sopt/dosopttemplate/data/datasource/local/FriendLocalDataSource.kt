@@ -1,4 +1,4 @@
-package org.sopt.dosopttemplate.data.local
+package org.sopt.dosopttemplate.data.datasource.local
 
 import org.sopt.dosopttemplate.data.model.local.FriendInfoEntity
 

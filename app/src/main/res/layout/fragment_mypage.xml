@@ -76,35 +76,12 @@
                 app:layout_constraintTop_toBottomOf="@id/tv_main_id_title"
                 tools:text="SONNY" />
 
-            <TextView
-                android:id="@+id/tv_main_hobby_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:text="@string/main_discription"
-                android:textAppearance="?textAppearanceHeadlineLarge"
-                android:textColor="?colorOnBackground"
-                app:layout_constraintStart_toStartOf="@id/tv_main_id"
-                app:layout_constraintTop_toBottomOf="@id/tv_main_id" />
-
-            <TextView
-                android:id="@+id/tv_main_hobby"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="@{data.discription}"
-                android:textAppearance="?textAppearanceBodyLarge"
-                android:textColor="?colorOnBackground"
-                app:layout_constraintStart_toStartOf="@id/tv_main_hobby_title"
-                app:layout_constraintTop_toBottomOf="@id/tv_main_hobby_title"
-                tools:text="축구" />
-
             <Button
                 android:id="@+id/btn_main_logout"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
-                android:layout_marginTop="200dp"
+                android:layout_marginTop="250dp"
                 android:layout_marginBottom="10dp"
                 android:backgroundTint="?colorPrimary"
                 android:text="@string/main_logout"
@@ -113,7 +90,7 @@
                 app:layout_constraintBottom_toTopOf="@id/btn_main_withdraw"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_main_hobby" />
+                app:layout_constraintTop_toBottomOf="@id/tv_main_id" />
 
             <Button
                 android:id="@+id/btn_main_withdraw"

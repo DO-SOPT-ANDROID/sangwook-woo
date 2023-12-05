@@ -7,7 +7,7 @@
 
         <variable
             name="data"
-            type="org.sopt.dosopttemplate.presentation.model.HomeModel.FriendInfoModel" />
+            type="org.sopt.dosopttemplate.presentation.model.UserInfoModel" />
     </data>
 
     <ScrollView
@@ -20,7 +20,7 @@
 
             <ImageView
                 android:id="@+id/iv_friend_detail_profile"
-                setImageUrl="@{data.imageUri}"
+                setImageUrl="@{data.avatar}"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:scaleType="centerCrop"
@@ -55,7 +55,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="@{data.name}"
+                android:text="@{data.firstName}"
                 android:textAppearance="?textAppearanceHeadlineLarge"
                 android:textColor="?colorOnBackground"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -65,10 +65,10 @@
 
             <TextView
                 android:id="@+id/tv_friend_detail_birthday"
-                setBirthday="@{data.birthday}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:text="@{data.lastName}"
                 android:textAppearance="?textAppearanceBodyLarge"
                 android:textColor="?colorOnBackground"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -78,7 +78,7 @@
 
             <LinearLayout
                 android:id="@+id/ll_friend_detail_music"
-                Music="@{data.music}"
+                Music="@{data.email}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
@@ -94,7 +94,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="8dp"
                     android:layout_marginStart="10dp"
-                    android:text="@{data.music}"
+                    android:text="@{data.email}"
                     android:textColor="?colorOnBackground"
                     android:textAppearance="?textAppearanceBodyMedium"
                     tools:text="애국가" />
