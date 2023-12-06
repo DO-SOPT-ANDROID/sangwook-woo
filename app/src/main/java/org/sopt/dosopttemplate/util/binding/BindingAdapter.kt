@@ -70,8 +70,8 @@ fun TextView.setBirthday(birthday: LocalDate?) {
     )
 }
 
-@BindingAdapter("validateId")
-fun TextView.validateId(validationResult: ValidationResult?) {
+@BindingAdapter("validate")
+fun TextView.validate(validationResult: ValidationResult?) {
     if (validationResult != null) {
         this.text = validationResult.errorMessage
         when (validationResult.successful) {
@@ -83,16 +83,23 @@ fun TextView.validateId(validationResult: ValidationResult?) {
     }
 }
 
-@BindingAdapter("validatePw")
-fun TextView.validatePw(validationResult: ValidationResult?) {
+@BindingAdapter("validate")
+fun EditText.validate(validationResult: ValidationResult?) {
     if (validationResult != null) {
-        this.text = validationResult.errorMessage
-        when (validationResult.successful) {
-            true -> {}
-            false -> {
-                this.setTextColor(ContextCompat.getColor(this.context, R.color.red050))
-            }
+        val themedContext = ContextThemeWrapper(context, R.style.Theme_DoSoptTemplate)
+
+        val typedValue = TypedValue()
+        themedContext.theme.resolveAttribute(com.google.android.material.R.attr.colorOnBackground, typedValue, true)
+        val colorPrimaryResId = typedValue.resourceId
+        val errorColor = R.color.red050
+
+        val colorStateList = if (!validationResult.successful && validationResult.errorMessage != null) {
+            getColorStateList(context, errorColor)
+        } else {
+            getColorStateList(context, colorPrimaryResId)
         }
+
+        this.backgroundTintList = colorStateList
     }
 }
 
@@ -103,7 +110,6 @@ fun Button.validateSignup(signupValidation: Boolean) {
     val typedValue = TypedValue()
     themedContext.theme.resolveAttribute(android.R.attr.colorPrimary, typedValue, true)
     val colorPrimaryResId = typedValue.resourceId
-
     val errorColor = R.color.gray050
 
     val colorStateList = if (signupValidation) {
@@ -115,6 +121,8 @@ fun Button.validateSignup(signupValidation: Boolean) {
     this.backgroundTintList = colorStateList
     this.isEnabled = signupValidation
 }
+
+
 
 @BindingAdapter("focus")
 fun EditText.setFocus(focus: Boolean) {
@@ -140,8 +148,8 @@ fun EditText.focusChange(inverseBindingListener: InverseBindingListener?) {
 @BindingAdapter("validVisibility")
 fun TextView.validVisibility(focus: Boolean) {
     if (focus) {
-        this.isVisible = true
+        this.alpha = 1f
     } else {
-        this.isInvisible = true
+        this.alpha = 0.2f
     }
 }
