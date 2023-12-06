@@ -10,7 +10,7 @@ class ValidateIdUseCase(
         if (id.isBlank()) {
             return ValidationResult(
                 successful = false,
-                errorMessage = "아이디를 입력해주세요"
+                errorMessage = null
             )
         }
         return validator.isValidId(id)

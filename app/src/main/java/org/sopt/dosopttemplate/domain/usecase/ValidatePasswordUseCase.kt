@@ -10,7 +10,7 @@ class ValidatePasswordUseCase(
         if (password.isBlank()) {
             return ValidationResult(
                 successful = false,
-                errorMessage = "비밀번호를 입력해주세요"
+                errorMessage = null
             )
         }
         return validator.isValidPassword(password)
