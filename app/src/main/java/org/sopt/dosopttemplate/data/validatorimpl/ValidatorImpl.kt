@@ -33,7 +33,7 @@ class ValidatorImpl @Inject constructor() : Validator {
     }
 
     companion object {
-        private const val ID_PATTERN = "^([a-zA-Z0-9]+){6,10}$"
+        private const val ID_PATTERN = "^(?=.*[A-za-z])(?=.*\\d)[a-zA-Z0-9]{6,10}$"
         private const val PASSWORD_PATTERN =
             "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[$@$!%*#?&])[A-Za-z\\d$@$!%*#?&]{6,12}$"
 
