@@ -7,7 +7,7 @@
         <item name="colorPrimaryVariant">@color/blue050</item>
         <item name="colorOnPrimary">@color/gray080</item>
         <!-- Secondary -->
-        <item name="colorSecondary">@color/coral010</item>
+        <item name="colorSecondary">@color/gray050</item>
         <item name="colorOnSecondary">@color/gray080</item>
         <item name="colorSecondaryVariant">@color/coral050</item>
         <!-- Surface -->
