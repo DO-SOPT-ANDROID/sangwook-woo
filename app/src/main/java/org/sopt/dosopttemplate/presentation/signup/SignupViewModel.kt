@@ -1,15 +1,21 @@
 package org.sopt.dosopttemplate.presentation.signup
 
 import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.map
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import org.sopt.dosopttemplate.domain.entity.ValidationResult
 import org.sopt.dosopttemplate.domain.repository.AuthRepository
+import org.sopt.dosopttemplate.domain.usecase.ValidateIdUseCase
+import org.sopt.dosopttemplate.domain.usecase.ValidatePasswordUseCase
 import org.sopt.dosopttemplate.presentation.model.UserModel
 import org.sopt.dosopttemplate.util.view.UiState
 import retrofit2.HttpException
@@ -18,32 +24,41 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SignupViewModel @Inject constructor(
-    private val authRepository: AuthRepository
+    private val authRepository: AuthRepository,
+    private val ValidId : ValidateIdUseCase,
+    private val ValidPassword : ValidatePasswordUseCase
 ) : ViewModel() {
-    val id = MutableLiveData<String>()
-    val pw = MutableLiveData<String>()
+    val id = MutableLiveData("")
+    val pw = MutableLiveData("")
     val nickname = MutableLiveData<String>()
     val hobby = MutableLiveData<String>()
 
+    val idFocus = MutableLiveData(false)
+    val pwFocus = MutableLiveData(false)
+
+    val idValidation : LiveData<ValidationResult> = id.map { id -> ValidId(id) }
+    val pwValidation : LiveData<ValidationResult> = pw.map { pw -> ValidPassword(pw) }
+    private val nicknameValidation : LiveData<Boolean> = nickname.map { nickname -> nickname.isNotBlank()}
+    val signupValidation: MediatorLiveData<Boolean> = MediatorLiveData<Boolean>().apply {
+        addSource(idValidation) { idResult ->
+            value = combineResults(idResult, pwValidation.value, nicknameValidation.value)
+        }
+
+        addSource(pwValidation) { pwResult ->
+            value = combineResults(idValidation.value, pwResult, nicknameValidation.value)
+        }
+
+        addSource(nicknameValidation) { nicknameResult ->
+            value = combineResults(idValidation.value, pwValidation.value, nicknameResult)
+        }
+    }
+
+    private fun combineResults(idResult: ValidationResult?, pwResult: ValidationResult?, nicknameResult: Boolean?): Boolean {
+        return idResult?.successful == true && pwResult?.successful == true && nicknameResult == true
+    }
+
     private val _signupState = MutableStateFlow<UiState<Any>>(UiState.Empty)
     val signupState: StateFlow<UiState<Any>> = _signupState.asStateFlow()
-
-    private fun isValidSignup(): Boolean =
-        isValidId(id.value) && isValidPw(pw.value) && isValidNickName(nickname.value) && isValidHobby(
-            hobby.value
-        )
-
-    private fun isValidId(id: String?): Boolean =
-        id?.length in MIN_ID_LENGTH..MAX_ID_LENGTH
-
-    private fun isValidPw(pw: String?): Boolean =
-        pw?.length in MIN_PW_LENGTH..MAX_PW_LENGTH
-
-    private fun isValidNickName(nickname: String?): Boolean =
-        nickname?.isNotBlank() ?: false
-
-    private fun isValidHobby(hobby: String?): Boolean =
-        hobby?.isNotBlank() ?: false
 
     fun signUp() {
         val userModel = UserModel(
@@ -52,17 +67,7 @@ class SignupViewModel @Inject constructor(
             nickname.value,
             hobby.value
         )
-        when {
-            isValidSignup() -> {
-                handleValidSignup(userModel)
-            }
-            !isValidId(id.value) -> _signupState.value = UiState.Failure(CODE_INVALID_ID)
-            !isValidPw(pw.value) -> _signupState.value = UiState.Failure(CODE_INVALID_PW)
-            !isValidNickName(nickname.value) -> _signupState.value =
-                UiState.Failure(CODE_INVALID_NICKNAME)
-            !isValidHobby(hobby.value) -> _signupState.value =
-                UiState.Failure(CODE_INVALID_HOBBY)
-        }
+        handleValidSignup(userModel)
     }
 
     fun handleValidSignup(userModel: UserModel) {
@@ -80,16 +85,5 @@ class SignupViewModel @Inject constructor(
                     _signupState.value = UiState.Failure("${t.message}")
                 }
         }
-    }
-
-    companion object {
-        private const val MIN_ID_LENGTH = 6
-        private const val MAX_ID_LENGTH = 10
-        private const val MIN_PW_LENGTH = 8
-        private const val MAX_PW_LENGTH = 12
-        private const val CODE_INVALID_ID = "idFail"
-        private const val CODE_INVALID_PW = "pwFail"
-        private const val CODE_INVALID_NICKNAME = "nicknameFail"
-        private const val CODE_INVALID_HOBBY = "hobbyFail"
     }
 }

@@ -2,6 +2,8 @@ package org.sopt.dosopttemplate.presentation.signup
 
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.core.view.isInvisible
+import androidx.core.view.isVisible
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
@@ -39,45 +41,13 @@ class SignupActivity : BindingActivity<ActivitySignupBinding>(R.layout.activity_
                     finish()
                 }
 
-                is UiState.Failure -> {
-                    handleFailureState(state.msg)
-                }
-
                 else -> {}
             }
         }.launchIn(lifecycleScope)
     }
 
-    private fun handleFailureState(msg: String) {
-        when (msg) {
-            CODE_INVALID_ID -> {
-                binding.root.snackBar { getString(R.string.signup_fail_id) }
-            }
-
-            CODE_INVALID_PW -> {
-                binding.root.snackBar { getString(R.string.signup_fail_pw) }
-            }
-
-            CODE_INVALID_NICKNAME -> {
-                binding.root.snackBar { getString(R.string.signup_fail_nickname) }
-            }
-
-            CODE_INVALID_HOBBY -> {
-                binding.root.snackBar { getString(R.string.signup_fail_discription) }
-            }
-        }
-    }
-
     private fun initHideKeyboard() {
         binding.root.setOnClickListener { hideKeyboard() }
         binding.clSignup.setOnClickListener { hideKeyboard() }
-    }
-
-    companion object {
-        private const val USER_KEY = "user"
-        private const val CODE_INVALID_ID = "idFail"
-        private const val CODE_INVALID_PW = "pwFail"
-        private const val CODE_INVALID_NICKNAME = "nicknameFail"
-        private const val CODE_INVALID_HOBBY = "hobbyFail"
     }
 }
