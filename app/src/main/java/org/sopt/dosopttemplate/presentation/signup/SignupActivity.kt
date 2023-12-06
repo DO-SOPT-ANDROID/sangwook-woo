@@ -2,8 +2,6 @@ package org.sopt.dosopttemplate.presentation.signup
 
 import android.os.Bundle
 import androidx.activity.viewModels
-import androidx.core.view.isInvisible
-import androidx.core.view.isVisible
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
@@ -14,7 +12,6 @@ import org.sopt.dosopttemplate.databinding.ActivitySignupBinding
 import org.sopt.dosopttemplate.util.activity.hideKeyboard
 import org.sopt.dosopttemplate.util.binding.BindingActivity
 import org.sopt.dosopttemplate.util.view.UiState
-import org.sopt.dosopttemplate.util.view.snackBar
 
 @AndroidEntryPoint
 class SignupActivity : BindingActivity<ActivitySignupBinding>(R.layout.activity_signup) {

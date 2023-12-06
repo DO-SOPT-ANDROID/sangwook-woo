@@ -7,7 +7,7 @@ import javax.inject.Inject
 
 class ValidatorImpl @Inject constructor() : Validator {
     override fun isValidId(id: String): ValidationResult {
-        if(idPattern.matcher(id).matches()){
+        if (idPattern.matcher(id).matches()) {
             return ValidationResult(
                 successful = true,
                 errorMessage = null
@@ -20,7 +20,7 @@ class ValidatorImpl @Inject constructor() : Validator {
     }
 
     override fun isValidPassword(password: String): ValidationResult {
-        if(passwordPattern.matcher(password).matches()){
+        if (passwordPattern.matcher(password).matches()) {
             return ValidationResult(
                 successful = true,
                 errorMessage = null

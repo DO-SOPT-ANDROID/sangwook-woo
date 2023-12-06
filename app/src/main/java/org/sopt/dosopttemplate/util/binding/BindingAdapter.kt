@@ -10,8 +10,6 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.content.res.AppCompatResources.getColorStateList
 import androidx.core.content.ContextCompat
-import androidx.core.view.isInvisible
-import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
 import androidx.databinding.InverseBindingAdapter
 import androidx.databinding.InverseBindingListener
@@ -89,15 +87,20 @@ fun EditText.validate(validationResult: ValidationResult?) {
         val themedContext = ContextThemeWrapper(context, R.style.Theme_DoSoptTemplate)
 
         val typedValue = TypedValue()
-        themedContext.theme.resolveAttribute(com.google.android.material.R.attr.colorOnBackground, typedValue, true)
+        themedContext.theme.resolveAttribute(
+            com.google.android.material.R.attr.colorOnBackground,
+            typedValue,
+            true
+        )
         val colorPrimaryResId = typedValue.resourceId
         val errorColor = R.color.red050
 
-        val colorStateList = if (!validationResult.successful && validationResult.errorMessage != null) {
-            getColorStateList(context, errorColor)
-        } else {
-            getColorStateList(context, colorPrimaryResId)
-        }
+        val colorStateList =
+            if (!validationResult.successful && validationResult.errorMessage != null) {
+                getColorStateList(context, errorColor)
+            } else {
+                getColorStateList(context, colorPrimaryResId)
+            }
 
         this.backgroundTintList = colorStateList
     }
@@ -121,7 +124,6 @@ fun Button.validateSignup(signupValidation: Boolean) {
     this.backgroundTintList = colorStateList
     this.isEnabled = signupValidation
 }
-
 
 
 @BindingAdapter("focus")

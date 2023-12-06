@@ -25,8 +25,8 @@ import javax.inject.Inject
 @HiltViewModel
 class SignupViewModel @Inject constructor(
     private val authRepository: AuthRepository,
-    private val ValidId : ValidateIdUseCase,
-    private val ValidPassword : ValidatePasswordUseCase
+    private val ValidId: ValidateIdUseCase,
+    private val ValidPassword: ValidatePasswordUseCase
 ) : ViewModel() {
     val id = MutableLiveData("")
     val pw = MutableLiveData("")
@@ -36,9 +36,10 @@ class SignupViewModel @Inject constructor(
     val idFocus = MutableLiveData(false)
     val pwFocus = MutableLiveData(false)
 
-    val idValidation : LiveData<ValidationResult> = id.map { id -> ValidId(id) }
-    val pwValidation : LiveData<ValidationResult> = pw.map { pw -> ValidPassword(pw) }
-    private val nicknameValidation : LiveData<Boolean> = nickname.map { nickname -> nickname.isNotBlank()}
+    val idValidation: LiveData<ValidationResult> = id.map { id -> ValidId(id) }
+    val pwValidation: LiveData<ValidationResult> = pw.map { pw -> ValidPassword(pw) }
+    private val nicknameValidation: LiveData<Boolean> =
+        nickname.map { nickname -> nickname.isNotBlank() }
     val signupValidation: MediatorLiveData<Boolean> = MediatorLiveData<Boolean>().apply {
         addSource(idValidation) { idResult ->
             value = combineResults(idResult, pwValidation.value, nicknameValidation.value)
@@ -53,7 +54,11 @@ class SignupViewModel @Inject constructor(
         }
     }
 
-    private fun combineResults(idResult: ValidationResult?, pwResult: ValidationResult?, nicknameResult: Boolean?): Boolean {
+    private fun combineResults(
+        idResult: ValidationResult?,
+        pwResult: ValidationResult?,
+        nicknameResult: Boolean?
+    ): Boolean {
         return idResult?.successful == true && pwResult?.successful == true && nicknameResult == true
     }
 
@@ -75,7 +80,7 @@ class SignupViewModel @Inject constructor(
             authRepository.signup(userModel.toUser())
                 .onSuccess { response ->
                     _signupState.value = UiState.Success(userModel)
-                    Log.e("서버통신","회원가입 성공 ${Response.success(response).headers()}")
+                    Log.e("서버통신", "회원가입 성공 ${Response.success(response).headers()}")
                 }
                 .onFailure { t ->
                     if (t is HttpException) {

@@ -4,9 +4,9 @@ import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import org.sopt.dosopttemplate.data.repository.AuthRepositoryImpl
 import org.sopt.dosopttemplate.data.repository.FriendLocalRepositoryImpl
 import org.sopt.dosopttemplate.data.repository.SharedPrefRepositoryImpl
-import org.sopt.dosopttemplate.data.repository.AuthRepositoryImpl
 import org.sopt.dosopttemplate.data.repository.UserRepositoryImpl
 import org.sopt.dosopttemplate.data.validatorimpl.ValidatorImpl
 import org.sopt.dosopttemplate.domain.repository.AuthRepository
