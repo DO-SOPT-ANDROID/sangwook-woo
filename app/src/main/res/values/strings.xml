@@ -20,7 +20,7 @@
     <string name="signup_id">아이디</string>
     <string name="signup_id_hint">아이디를 입력하세요. (6~10 글자)</string>
     <string name="signup_pw">비밀번호</string>
-    <string name="signup_pw_hint">비밀번호를 입력하세요. (8~12 글자)</string>
+    <string name="signup_pw_hint">비밀번호를 입력하세요. (6~12 글자)</string>
     <string name="signup_nickname">닉네임</string>
     <string name="signup_nickname_hint">닉네임을 입력하세요. (한 글자 이상)</string>
     <string name="signup_discription">소개</string>

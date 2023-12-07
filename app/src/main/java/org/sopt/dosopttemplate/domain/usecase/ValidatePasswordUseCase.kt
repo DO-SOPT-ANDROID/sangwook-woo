@@ -9,8 +9,7 @@ class ValidatePasswordUseCase(
     operator fun invoke(password: String): ValidationResult {
         if (password.isBlank()) {
             return ValidationResult(
-                successful = false,
-                errorMessage = null
+                successful = false
             )
         }
         return validator.isValidPassword(password)

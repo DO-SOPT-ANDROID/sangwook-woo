@@ -1,16 +1,16 @@
 package org.sopt.dosopttemplate.presentation.signup
 
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MediatorLiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.map
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import org.sopt.dosopttemplate.domain.entity.ValidationResult
 import org.sopt.dosopttemplate.domain.repository.AuthRepository
@@ -25,42 +25,32 @@ import javax.inject.Inject
 @HiltViewModel
 class SignupViewModel @Inject constructor(
     private val authRepository: AuthRepository,
-    private val ValidId: ValidateIdUseCase,
-    private val ValidPassword: ValidatePasswordUseCase
+    private val validateId: ValidateIdUseCase,
+    private val validatePassword: ValidatePasswordUseCase
 ) : ViewModel() {
-    val id = MutableLiveData("")
-    val pw = MutableLiveData("")
-    val nickname = MutableLiveData<String>()
-    val hobby = MutableLiveData<String>()
+    val id = MutableStateFlow("")
+    val pw = MutableStateFlow("")
+    val nickname = MutableStateFlow("")
+    val hobby = MutableStateFlow("")
 
-    val idFocus = MutableLiveData(false)
-    val pwFocus = MutableLiveData(false)
+    val idFocus = MutableStateFlow(false)
+    val pwFocus = MutableStateFlow(false)
 
-    val idValidation: LiveData<ValidationResult> = id.map { id -> ValidId(id) }
-    val pwValidation: LiveData<ValidationResult> = pw.map { pw -> ValidPassword(pw) }
-    private val nicknameValidation: LiveData<Boolean> =
+    val idValidation: StateFlow<ValidationResult> = id.map { id -> validateId(id) }
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(), ValidationResult(false))
+    val pwValidation: StateFlow<ValidationResult> = pw.map { pw -> validatePassword(pw) }
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(), ValidationResult(false))
+    private val nicknameValidation: StateFlow<Boolean> =
         nickname.map { nickname -> nickname.isNotBlank() }
-    val signupValidation: MediatorLiveData<Boolean> = MediatorLiveData<Boolean>().apply {
-        addSource(idValidation) { idResult ->
-            value = combineResults(idResult, pwValidation.value, nicknameValidation.value)
-        }
+            .stateIn(viewModelScope, SharingStarted.WhileSubscribed(), false)
 
-        addSource(pwValidation) { pwResult ->
-            value = combineResults(idValidation.value, pwResult, nicknameValidation.value)
-        }
-
-        addSource(nicknameValidation) { nicknameResult ->
-            value = combineResults(idValidation.value, pwValidation.value, nicknameResult)
-        }
-    }
-
-    private fun combineResults(
-        idResult: ValidationResult?,
-        pwResult: ValidationResult?,
-        nicknameResult: Boolean?
-    ): Boolean {
-        return idResult?.successful == true && pwResult?.successful == true && nicknameResult == true
-    }
+    val signupValidation: StateFlow<Boolean> = combine(
+        idValidation,
+        pwValidation,
+        nicknameValidation
+    ) { idResult, pwResult, nicknameResult ->
+        idResult.successful && pwResult.successful && nicknameResult
+    }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(), false)
 
     private val _signupState = MutableStateFlow<UiState<Any>>(UiState.Empty)
     val signupState: StateFlow<UiState<Any>> = _signupState.asStateFlow()
@@ -75,7 +65,7 @@ class SignupViewModel @Inject constructor(
         handleValidSignup(userModel)
     }
 
-    fun handleValidSignup(userModel: UserModel) {
+    private fun handleValidSignup(userModel: UserModel) {
         viewModelScope.launch {
             authRepository.signup(userModel.toUser())
                 .onSuccess { response ->

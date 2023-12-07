@@ -9,8 +9,7 @@ class ValidateIdUseCase(
     operator fun invoke(id: String): ValidationResult {
         if (id.isBlank()) {
             return ValidationResult(
-                successful = false,
-                errorMessage = null
+                successful = false
             )
         }
         return validator.isValidId(id)

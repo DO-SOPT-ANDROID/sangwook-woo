@@ -9,8 +9,7 @@ class ValidatorImpl @Inject constructor() : Validator {
     override fun isValidId(id: String): ValidationResult {
         if (idPattern.matcher(id).matches()) {
             return ValidationResult(
-                successful = true,
-                errorMessage = null
+                successful = true
             )
         }
         return ValidationResult(
@@ -22,8 +21,7 @@ class ValidatorImpl @Inject constructor() : Validator {
     override fun isValidPassword(password: String): ValidationResult {
         if (passwordPattern.matcher(password).matches()) {
             return ValidationResult(
-                successful = true,
-                errorMessage = null
+                successful = true
             )
         }
         return ValidationResult(
